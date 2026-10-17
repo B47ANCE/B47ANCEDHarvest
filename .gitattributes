@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+# These byte-for-byte historical records are referenced by the preservation ledger.
+SHA256SUMS.txt -text whitespace=cr-at-eol
+WORKSHOP_ID.txt -text whitespace=cr-at-eol

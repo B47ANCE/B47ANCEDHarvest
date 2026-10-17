@@ -1,0 +1,3 @@
+58c95abcf12ac5750f731270d315d0d8bb0cec8377062ca113bfa0bcf8804fce  dist/farmWorks-0.1.0-workshop-ready.zip
+54216f83c14fe2f3dc9f1d21a9c260002f6fe1bc3d10ffb3c6cbd916b0f97277  dist/farmWorks-0.4.0-workshop-ready.zip
+d70cda7312eb235e0f645256a9cbcb3eccda5072e710aedf13e42f7d3fb817a8  dist/farmWorks-0.4.1-workshop-ready.zip

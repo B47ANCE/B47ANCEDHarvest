@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "canonical": "VERSION",
+  "mirrors": [
+    {
+      "path": "Contents/mods/B47ANCEDHarvest/42/mod.info",
+      "pattern": "^modversion=(?P<version>[^\\r\\n]+)$"
+    },
+    {
+      "path": "Contents/mods/B47ANCEDHarvest/42/media/lua/shared/farmWorks/API.lua",
+      "pattern": "^farmWorks.VERSION=\"(?P<version>[^\"]+)\"$"
+    },
+    {
+      "path": "Contents/mods/B47ANCEDHarvest/info.txt",
+      "pattern": "^Version: (?P<version>[^\\r\\n]+)$"
+    },
+    {
+      "path": "README.md",
+      "pattern": "^- Status: version \\x60(?P<version>[^\\x60]+)\\x60"
+    },
+    {
+      "path": "docs/MASTER_ROADMAP.md",
+      "pattern": "^Canonical version: (?P<version>\\d+\\.\\d+\\.\\d+)\\.$"
+    },
+    {
+      "path": "docs/VERSIONING.md",
+      "pattern": "^Canonical Project Version: (?P<version>\\d+\\.\\d+\\.\\d+)\\.$"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "pattern": "^Project Version: (?P<version>[^\\r\\n]+)$"
+    },
+    {
+      "path": "WORKSHOP_DESCRIPTION.txt",
+      "pattern": "^\\[b\\]Mod Version: (?P<version>[^\\[]+)\\[/b\\]$"
+    },
+    {
+      "path": "workshop.txt",
+      "pattern": "^description=\\[b\\]Mod Version: (?P<version>[^\\[]+)\\[/b\\]$"
+    },
+    {
+      "path": "WORKSHOP_CHANGE_NOTE.txt",
+      "pattern": "\\A\\[b\\]Version (?P<version>[^\\[]+)\\[/b\\]"
+    },
+    {
+      "path": "tests/test_identity.lua",
+      "pattern": "^assert\\(branded.VERSION==\"(?P<version>[^\"]+)\"\\)"
+    }
+  ],
+  "changelog": {
+    "path": "CHANGELOG.md",
+    "pattern": "^## (?P<version>\\d+\\.\\d+\\.\\d+)$"
+  },
+  "packaging": {
+    "artifacts": [
+      {
+        "glob": "dist/current/*.zip",
+        "pattern": "B47ANCEDHarvest-(?P<version>.+)-workshop-ready\\.zip",
+        "zip_members": [
+          {
+            "member": "Contents/mods/B47ANCEDHarvest/42/mod.info",
+            "pattern": "^modversion=(?P<version>[^\\r\\n]+)$"
+          }
+        ]
+      }
+    ]
+  },
+  "other_versions": [
+    {
+      "category": "pz",
+      "reference": "Contents/mods/B47ANCEDHarvest/42/mod.info:versionMin",
+      "reason": "Installed-game constraint is not Project Version; exact current runtime remains untested."
+    },
+    {
+      "category": "compatibility",
+      "reference": "workshop.txt:version=1; farmWorks.CalendarProbe.v1 and schemaVersion=1; provider IDs",
+      "reason": "Workshop metadata/storage/provider contracts stay independently versioned."
+    },
+    {
+      "category": "inventory-schema",
+      "reference": "version-inventory.json:schema=1",
+      "reason": "Checker schema, not mod version."
+    },
+    {
+      "category": "project-fixture",
+      "reference": "tests/*.lua synthetic calendar identifiers and values",
+      "reason": "Offline fixtures, not game or project releases."
+    }
+  ],
+  "historical": [
+    {
+      "reference": "dist/**; SHA256SUMS.txt; .steamcmd-last-upload.sha256",
+      "reason": "Original packages, backups, checksum/upload evidence preserved byte-for-byte. No current package/upload exists."
+    },
+    {
+      "reference": "WORKSHOP_CHANGE_NOTE.txt: historical changenotes",
+      "reason": "Original previous versions and names retained; only first entry is current."
+    },
+    {
+      "reference": "docs/ARCHITECTURE.md; docs/ROADMAP.md: Version 0.x sections",
+      "reason": "Version-specific implementation history, not current mirrors."
+    },
+    {
+      "reference": "docs/B42_API_RESEARCH_HANDOFF.md; docs/IRRIGATION_RUNTIME_AUDIT.md",
+      "reason": "Earlier Build 42.20 research/source claims, not newly verified 42.21 or runtime proof."
+    }
+  ]
+}

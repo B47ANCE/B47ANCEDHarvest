@@ -1,0 +1,8 @@
+name=B47ANCE'd Harvest
+id=B47ANCEDHarvest
+description=Vanilla-first farming framework foundation with extensible crop adapters, bounded field inspection, irrigation demand, and authoritative crop-side water application.
+poster=thumbnail.png
+icon=icon.png
+author=B47ANCE
+modversion=0.9.0
+versionMin=42.20.3

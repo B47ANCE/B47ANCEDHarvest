@@ -1,0 +1,48 @@
+[h1]B47ANCE'd Harvest[/h1]
+
+Agriculture, crop inspection, field planning, and farming-system infrastructure for theWorks ecosystem.
+
+B47ANCE'd Harvest normalizes vanilla and compatible crops while exposing bounded field and irrigation-demand information for future agricultural gameplay.
+
+[b]Mod Version: 0.9.0[/b]
+
+[b]Development Status[/b]
+
+This is an API foundation under active development, not yet a standalone farming overhaul.
+
+[h2]Current Features[/h2]
+[list]
+[*]Vanilla and third-party crop-provider normalization
+[*]Cursor-paged field inspection capped at 1,024 candidates per call
+[*]Crop and field summaries with rejected-candidate diagnostics
+[*]Pure, non-mutating irrigation-demand planning from live crop state
+[*]Authoritative crop-side irrigation through registered providers, with bounded use counts and readback validation
+[*]Provider isolation and public extension APIs
+[*]Bounded nearby-crop developer inspector using the vanilla farming-system lookup
+[/list]
+
+[h2]Ecosystem Integration[/h2]
+[list]
+[*]Owns crops, field preparation, planting, harvesting, and agricultural equipment
+[*]Exposes irrigation demand for waterWorks without owning water infrastructure
+[*]Will consume groundWorks terrain state without owning generic ground transformation
+[*]Will integrate animalWorks draft-animal implements without owning animal behavior
+[*]Has no required mod dependencies in the current foundation
+[/list]
+
+[h2]Upcoming Features[/h2]
+[list]
+[*]Soil and crop interaction, fertility, amendments, and field management
+[*]Transactional coupling between waterWorks supply and B47ANCE'd Harvest crop application
+[*]Implements, machinery, orchards, fencing, and multiplayer validation
+[/list]
+
+[b]Credits[/b]
+Project Director & Designer: B47ANCE
+Development, systems architecture, implementation, testing & documentation: Codex
+
+Workshop ID: 3788591121
+Mod ID: B47ANCEDHarvest
+
+[b]Mod ID migration[/b]
+Previously farmWorks. Update enabled-mod lists to B47ANCEDHarvest; do not enable both identities together. Existing Lua integrations remain compatible.

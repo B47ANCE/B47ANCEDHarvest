@@ -1,0 +1,6 @@
+B47ANCE'd Harvest — STEAM WORKSHOP INFO
+
+Status: Crop-adapter, field-inspection, irrigation-demand, and crop-side application API foundation; not yet a gameplay release.
+Author: B47ANCE
+Version: 0.9.0
+Internal Mod ID: B47ANCEDHarvest
