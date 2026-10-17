@@ -5,6 +5,7 @@ Run from the project root with Python 3 and Lupa:
 ```powershell
 python scripts/check_versions.py --root . --json
 python scripts/run_tests.py
+python scripts/run_tests.py --lua51
 python scripts/check_identity.py
 ```
 
@@ -16,6 +17,10 @@ claiming to validate them; source artwork and metadata remain required.
 Each fixture runs in an isolated Lua host. Coverage includes crop providers,
 bounded fields, irrigation client rejection/readback, seasonal/seed guidance,
 diagnostic probes, production loaders, and new/legacy identity compatibility.
+Nine fixtures now include test_hardening.lua with eight regression groups.
+The runner explicitly mocks non-client authority and enabled native seasons;
+these fixtures are not live engine evidence. --lua51 selects a Lua 5.1 host,
+not the game's Kahlua VM.
 The formerly documented Run-HostTests.ps1 / Validate-Suite.ps1 scripts are
 unavailable in this workspace; the standalone runner replaces those commands.
 
@@ -54,3 +59,17 @@ farmWorksCalendar* commands remain aliases. Adapt example identifiers to the
 map's documented policy and compare dates on every peer. Host tests and UI
 comparisons do not prove synchronization. G7 dedicated MP NOT TESTED / BLOCKED;
 stable G8 BLOCKED.
+
+## Hardening runtime checklist
+
+- Compare a planted crop with adjacent empty furrows; empty plots must not alter
+  crop count, mean water or irrigation demand.
+- With PlantGrowingSeasons disabled on the server, advice must be unavailable
+  on clients even when a caller supplies seasonsEnabled=true.
+- Compare best/sow/risk advice with native definitions and test bounded custom
+  windows separately; custom calendar IDs must not use native month windows.
+- On the dedicated authority, verify one crop's water change, client update,
+  late join and save/restart persistence. Client-side mutation must reject.
+- Exercise controlled test providers on disposable fixtures for partial/unknown
+  effect reconciliation. Never apply destructive fault tests to player saves or
+  interpret false as rollback. Source-water automation remains gated.

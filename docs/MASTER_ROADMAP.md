@@ -1,6 +1,6 @@
 # B47ANCE'd Harvest Master Roadmap
 
-Canonical version: 0.9.0.
+Canonical version: 0.9.1.
 
 ## Implemented
 
@@ -16,6 +16,10 @@ Canonical version: 0.9.0.
   optional uiWorks advice.
 - Save/reload-aware native calendar diagnostics with raw-date normalization and
   monotonic-world-age checks.
+
+- Hardening for empty furrows, authority failures, partial irrigation outcomes,
+  native sandbox interpretation, malformed months, calendar bounds and failed
+  registration capacity, with eight regression groups.
 
 ## Still to add
 

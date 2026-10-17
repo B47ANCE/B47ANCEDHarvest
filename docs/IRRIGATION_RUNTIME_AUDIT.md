@@ -27,3 +27,17 @@ It does not locate, reserve, withdraw, filter, or classify a water source.
 Those operations remain waterWorks-owned. An end-to-end irrigation transaction
 must wait for an evidence-backed coupling that can preserve both fluid and crop
 state without duplicating either project's authority.
+
+## Current hardening source recheck
+
+The earlier Build 42.20 observations above remain historical. For 0.9.1, the
+installed Steam manifest reports build 25485521. The same SPlantGlobalObject
+source hash is 0db75ed607f5c2bc82ebeaf7b52d5965241077e184e52f1a6cf88762c916b2f7.
+Lines 501-518 still implement ten-point watering and saveData; lines 771-777
+write/transmit object ModData when the IsoObject is available. This is
+[VERIFIED] Lua source, not a durable/dedicated-runtime claim. Full game version
+was not independently decoded during this pass.
+
+The new error receipts describe observed crop effects after provider failure.
+They do not claim rollback or transactional source withdrawal. See
+IRRIGATION_API.md and the current validation record.

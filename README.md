@@ -4,7 +4,7 @@ B47ANCE'd Harvest is the farming and agricultural-infrastructure project. Its fi
 foundation extends vanilla Build 42 crops through read-only adapters rather
 than replacing them.
 
-- Status: version `0.9.0` bounded crop/irrigation APIs plus deterministic
+- Status: version `0.9.1` bounded crop/irrigation APIs plus deterministic
   seasonal guidance backed by live vanilla crop definitions and the optional
   weatherWorks calendar and a save/reload-aware native date probe; native date synchronization remains unverified and
   this is not yet a gameplay release.
@@ -54,7 +54,21 @@ are historical outputs, not current source or publication proof.
 See [versioning](docs/VERSIONING.md), [validation](docs/VALIDATION.md), and
 [testing](docs/TESTING.md). Root `VERSION` is canonical. Public source repository:
 [B47ANCE/B47ANCEDHarvest](https://github.com/B47ANCE/B47ANCEDHarvest).
-The initial development import is on `feature/harvest-0.9.0` for PR review;
-`main` initially contains repository bootstrap rules. Historical output archives
+The initial import was merged into `main` through PR #1. This hardening
+iteration is developed on `fix/harvest-0.9.1` for PR review. Historical output archives
 and private developer settings remain local and are excluded from Git.
 G7 dedicated multiplayer NOT TESTED / BLOCKED; stable-release G8 BLOCKED.
+
+## Hardening behavior
+
+Crop totals exclude empty furrows. Seasonal advice reads the native
+PlantGrowingSeasons sandbox option and fails closed on malformed month arrays,
+invalid days or incompatible native calendars. Native crop windows require
+ProjectZomboid.Gregorian with 365/366 days; explicitly registered windows still
+support custom calendars. Rejected registrations consume no ID or capacity.
+
+Irrigation rejects uncertain execution authority. Provider failures may already
+have changed the crop; the additive third return value reports partial,
+unchanged or unknown water effects without authorizing automatic retries.
+See [the irrigation contract](docs/IRRIGATION_API.md). No new user sandbox
+setting is needed: these are safety checks and existing vanilla configuration.

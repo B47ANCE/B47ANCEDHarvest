@@ -14,7 +14,8 @@ The farmWorks Lua API and farmWorks.CalendarProbe.v1 diagnostic key are retained
 compatibility contracts. Historical dist/upload/checksum records stay intact.
 Run python scripts/check_versions.py --root . --json and python scripts/run_tests.py.
 Public Git remote: https://github.com/B47ANCE/B47ANCEDHarvest.git.
-The initial 0.9.0 import uses feature/harvest-0.9.0 and a PR into main.
+The initial 0.9.0 import merged through PR #1. Develop changes on feature/fix
+branches from current origin/main and submit a PR; commit/push is not merge approval.
 Run the shared freshness preflight before edits and before commit/push.
 Local historical outputs stay ignored; check_identity.py --require-local-history
 requires all preserved artifacts, while its default mode supports clean clones.

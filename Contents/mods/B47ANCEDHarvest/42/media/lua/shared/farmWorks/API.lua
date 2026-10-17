@@ -1,5 +1,5 @@
 local farmWorks=rawget(_G,"farmWorks") or {}
-farmWorks.VERSION="0.9.0"
+farmWorks.VERSION="0.9.1"
 farmWorks.CropProviders=farmWorks.CropProviders or {}
 farmWorks.MAX_FIELD_PAGE=1024
 farmWorks._IrrigationLocks=farmWorks._IrrigationLocks or setmetatable({},{__mode="k"})
@@ -42,6 +42,8 @@ function farmWorks.inspectCrop(crop)
             if inspectedOk and type(value)=="table" then
                 local view={};for key,entry in pairs(value)do view[key]=entry end
                 view.schemaVersion=1; view.providerId=provider.id; view.source=crop
+                local water=tonumber(view.waterLevel)
+                view.waterLevelKnown=water~=nil and water==water and water~=math.huge and water~=-math.huge
                 view.waterLevel=clamp(view.waterLevel,0,100)
                 view.growthStage=tonumber(view.growthStage)
                 view.cropType=view.cropType and tostring(view.cropType) or "unknown"
@@ -53,7 +55,10 @@ function farmWorks.inspectCrop(crop)
 end
 
 farmWorks.registerCropProvider({id="vanilla.SPlantGlobalObject",priority=100,
-    matches=function(crop)return read(crop,"typeOfSeed")~=nil and read(crop,"waterLvl")~=nil end,
+    matches=function(crop)
+        local seed=read(crop,"typeOfSeed")
+        return seed~=nil and seed~="none" and read(crop,"state")~="plow" and read(crop,"waterLvl")~=nil
+    end,
     inspect=function(crop)return {
         cropType=read(crop,"typeOfSeed"),growthStage=read(crop,"nbOfGrow"),waterLevel=read(crop,"waterLvl"),
         waterNeeded=tonumber(read(crop,"waterNeeded")),health=tonumber(read(crop,"health")),
@@ -125,11 +130,11 @@ local function providerById(id)
     return id and farmWorks.CropProviders[id] or nil
 end
 
-local function clientAuthority()
+local function mutationAuthority()
     local checker=rawget(_G,"isClient")
     if type(checker)~="function" then return false end
     local ok,value=pcall(checker)
-    return ok and value==true
+    return ok and value==false
 end
 
 -- Applies only the crop-side effect for water that an owning system has already
@@ -141,12 +146,13 @@ function farmWorks.applyIrrigation(crop,requestedUses,options)
     if not uses or uses~=uses or uses==math.huge or uses<=0 or uses~=math.floor(uses) then
         return false,"positive whole irrigation-use count required"
     end
-    if clientAuthority() then return false,"irrigation application requires server or single-player authority" end
+    if not mutationAuthority() then return false,"irrigation application requires server or single-player authority" end
     if farmWorks._IrrigationLocks[crop] then return false,"crop irrigation already in progress" end
 
     local before,beforeErr=farmWorks.inspectCrop(crop)
     if not before then return false,beforeErr end
     if before.alive==false then return false,"crop is not alive" end
+    if not before.waterLevelKnown then return false,"crop water level unavailable" end
     local provider=providerById(before.providerId)
     if not provider or type(provider.applyIrrigation)~="function" then
         return false,"crop provider does not support irrigation application"
@@ -162,22 +168,32 @@ function farmWorks.applyIrrigation(crop,requestedUses,options)
 
     farmWorks._IrrigationLocks[crop]=true
     local called,applied,reason=pcall(provider.applyIrrigation,crop,acceptedUses,options)
+    -- An exception/rejection can follow a real crop change. Always attempt
+    -- readback before releasing the lock, and never imply that false undoes it.
+    local inspected,after,afterErr=pcall(farmWorks.inspectCrop,crop)
     farmWorks._IrrigationLocks[crop]=nil
-    if not called then return false,"irrigation provider failed: "..tostring(applied) end
-    if applied~=true then return false,reason or "irrigation provider rejected application" end
-
-    local after,afterErr=farmWorks.inspectCrop(crop)
-    if not after then return false,"crop readback failed: "..tostring(afterErr) end
-    if after.providerId~=before.providerId then return false,"crop provider changed during irrigation" end
-    local observed=tonumber(after.waterLevel)
+    local receipt={schemaVersion=1,providerId=before.providerId,cropType=before.cropType,
+        requestedUses=uses,targetWater=target,waterBefore=current,
+        outcome="unknown",retrySafe=false,x=before.x,y=before.y,z=before.z}
+    local observed=inspected and type(after)=="table" and after.providerId==before.providerId and after.waterLevelKnown and tonumber(after.waterLevel) or nil
+    if observed and observed==observed and observed~=math.huge and observed~=-math.huge then
+        receipt.waterAfter=observed
+        receipt.measuredIncrease=observed-current
+        receipt.outcome=observed==current and "unchanged" or "partial"
+    else observed=nil end
+    if not called then return false,"irrigation provider failed: "..tostring(applied),receipt end
+    if applied~=true then return false,reason or "irrigation provider rejected application",receipt end
+    if not inspected or type(after)~="table" then
+        return false,"crop readback failed: "..tostring(inspected and afterErr or after),receipt
+    end
+    if after.providerId~=before.providerId then return false,"crop provider changed during irrigation",receipt end
     local expected=math.min(100,current+acceptedUses*10)
     if not observed or observed~=expected then
-        return false,"irrigation readback mismatch"
+        return false,"irrigation readback mismatch",receipt
     end
-    return true,{schemaVersion=1,providerId=after.providerId,cropType=after.cropType,
-        requestedUses=uses,appliedUses=acceptedUses,targetWater=target,
-        waterBefore=current,waterAfter=observed,measuredIncrease=observed-current,
-        x=after.x,y=after.y,z=after.z}
+    receipt.outcome="applied";receipt.appliedUses=acceptedUses
+    receipt.cropType=after.cropType;receipt.x=after.x;receipt.y=after.y;receipt.z=after.z
+    return true,receipt
 end
 
 _G.farmWorks=farmWorks

@@ -6,10 +6,11 @@ The user authorized repository creation and the 0.9.0 commit/push on 2026-10-16
 (America/Phoenix). Owner B47ANCE was verified through the authenticated GitHub
 CLI account. Origin uses HTTPS and contains no embedded credentials.
 
-The initial main commit contains .gitignore. The full source iteration uses
-feature/harvest-0.9.0 and a pull request into main. A commit/push request does
-not authorize merging that PR. No stable tag, deployment, Workshop upload,
-repository protection change or CI configuration is included in this import.
+The initial main commit contained .gitignore; PR #1 merged the 0.9.0 source
+import into main at fbcde2b1c209cba172c295f0ca4c857686121515. The hardening
+iteration uses fix/harvest-0.9.1 and another PR. Commit/push requests do not
+authorize merging a new PR. No stable tag, deployment, Workshop upload,
+repository protection change or CI configuration is part of this iteration.
 
 Before each public push, inspect git status --short --ignored, git diff --cached
 --check, git diff --cached --stat and the complete staged text for credential
@@ -24,11 +25,11 @@ Verify identity and ancestry:
 git remote -v
 git status --short --branch
 git rev-parse HEAD
-git ls-remote --heads origin feature/harvest-0.9.0
+git ls-remote --heads origin fix/harvest-0.9.1
 gh repo view B47ANCE/B47ANCEDHarvest --json visibility,url,defaultBranchRef
 ```
 
-The local and remote feature-branch SHA must match after push. Bootstrap main's
+The local and remote development-branch SHA must match after push. Bootstrap main's
 original SHA is 417e33ca3c7d0badbae513c9e9b6b13920cbb3db. No exact feature SHA is
 embedded in its own commit; the final task report supplies remote verification.
 

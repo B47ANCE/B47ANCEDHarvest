@@ -1,3 +1,16 @@
+[b]Version 0.9.1[/b]
+
+[h2]Harvest hardening[/h2]
+
+• Fix empty furrows being counted as living crops.
+• Reject ambiguous mutation authority and report partial/unknown irrigation effects explicitly.
+• Respect PlantGrowingSeasons and reject malformed seasonal/calendar input.
+• Prevent rejected planting guidance registrations from consuming capacity.
+• Add eight regression groups. Dedicated multiplayer NOT TESTED; stable G8 BLOCKED.
+• Source development iteration only; no Workshop upload or local deployment.
+
+[b]Historical 0.9.0 changenote — original evidence retained[/b]
+
 [b]Version 0.9.0[/b]
 
 [h2]B47ANCE'd Harvest rename[/h2]

@@ -1,6 +1,6 @@
 # B47ANCE'd Harvest version inventory
 
-Canonical Project Version: 0.9.0.
+Canonical Project Version: 0.9.1.
 
 On 2026-10-16 (America/Phoenix), the user approved the local/offline rename and
 establishing canonical VERSION. Observed previous README, API and mod.info
@@ -33,8 +33,10 @@ authorized matching package. Integrity/runtime checks are separate gates.
 
 The user subsequently authorized public GitHub onboarding. The authenticated
 owner is B47ANCE; public origin is https://github.com/B47ANCE/B47ANCEDHarvest.git.
-The initial main commit contains ignore rules; feature/harvest-0.9.0 contains
-the current source iteration for PR review. Version remains 0.9.0: repository
-onboarding completes the existing iteration without changing gameplay/API scope.
-Verify backup using git rev-parse HEAD against git ls-remote --heads origin
-feature/harvest-0.9.0. No stable release tag is authorized.
+The initial 0.9.0 import was merged into main through PR #1. Current target
+0.9.1 is PATCH: it corrects existing behavior and adds optional receipt/inspection
+fields while preserving boolean/error positions, success fields, public aliases,
+provider contract, Mod ID, Workshop item and persisted schemas. Development uses
+fix/harvest-0.9.1 from merged main. Verify backup with git rev-parse HEAD and
+git ls-remote --heads origin fix/harvest-0.9.1. No stable tag is authorized.
+docs/history/VALIDATION-0.9.0.md preserves the earlier validation separately.
