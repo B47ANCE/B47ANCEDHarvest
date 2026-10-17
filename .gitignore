@@ -1,0 +1,11 @@
+# Generated output and local diagnostics; historical files remain in place.
+dist/
+__pycache__/
+*.pyc
+.agents/
+.codex/
+local.settings.json
+*.log
+server-console*
+console.txt
+.steamcmd-last-upload.sha256
