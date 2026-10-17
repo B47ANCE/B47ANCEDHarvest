@@ -45,6 +45,10 @@
     {
       "path": "tests/test_identity.lua",
       "pattern": "^assert\\(branded.VERSION==\"(?P<version>[^\"]+)\"\\)"
+    },
+    {
+      "path": "docs/MOD_OVERVIEW.json",
+      "pattern": "^  \"version\": \"(?P<version>[^\"]+)\""
     }
   ],
   "changelog": {
@@ -90,7 +94,7 @@
   "historical": [
     {
       "reference": "dist/**; SHA256SUMS.txt; .steamcmd-last-upload.sha256",
-      "reason": "Original packages, backups, checksum/upload evidence preserved byte-for-byte. No current package/upload exists."
+      "reason": "Original packages, backups and prior checksum/upload evidence remain unchanged. Current authorized outputs are separately bound by release-manifest.json."
     },
     {
       "reference": "WORKSHOP_CHANGE_NOTE.txt: historical changenotes",

@@ -26,10 +26,10 @@ Run with Python 3 (Lupa is also required for host tests):
 - python scripts/run_tests.py
 - python scripts/check_versions.py --root . --release --json
 
-No package is authorized or created. The proposed current package contract is
+The subsequent publish request authorizes a current MP test package. Its contract is
 dist/current/B47ANCEDHarvest-<VERSION>-workshop-ready.zip, containing
-Contents/mods/B47ANCEDHarvest/42/mod.info. Release checks must fail without an
-authorized matching package. Integrity/runtime checks are separate gates.
+Contents/mods/B47ANCEDHarvest/42/mod.info. scripts/build_workshop.py generates the authorized package and requires release
+version checks to pass against it. Integrity/runtime checks are separate gates.
 
 The user subsequently authorized public GitHub onboarding. The authenticated
 owner is B47ANCE; public origin is https://github.com/B47ANCE/B47ANCEDHarvest.git.

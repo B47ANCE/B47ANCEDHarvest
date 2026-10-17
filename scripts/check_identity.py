@@ -4,7 +4,7 @@ import argparse
 import hashlib
 import json
 import re
-from lupa import LuaRuntime
+from lupa.lua54 import LuaRuntime
 
 ROOT = Path(__file__).resolve().parents[1]
 MOD = ROOT / "Contents/mods/B47ANCEDHarvest"

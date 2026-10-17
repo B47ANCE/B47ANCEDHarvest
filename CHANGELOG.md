@@ -2,6 +2,9 @@
 
 ## 0.9.1
 
+- Prepare explicitly labelled Workshop MP test distribution with public source
+  link, reproducible offline packaging/provenance and reviewed mod overview.
+
 - Reject crop mutation when the engine authority probe is missing, throws or
   returns a non-boolean result.
 - Add explicit non-retryable irrigation failure receipts for observed partial,
