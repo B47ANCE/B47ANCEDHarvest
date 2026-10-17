@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "id": "harvest",
+  "name": "B47ANCE'd Harvest",
+  "version": "0.9.1",
+  "reviewed": true,
+  "source_digest": "05f70cc666dea170b67dff2a88ff243f9b2feca9d6ce5fc7825a2e1a6d547e42",
+  "features": [
+    {
+      "status": "Source",
+      "text": "Bounded crop-provider inspection, field summaries excluding empty furrows, irrigation demand and legacy/branded API aliases."
+    },
+    {
+      "status": "Foundation",
+      "text": "Server/SP crop-side irrigation with explicit partial/unknown effect receipts; no atomic water-source transaction or automatic retry."
+    },
+    {
+      "status": "Source",
+      "text": "Live vanilla seasonal/seed guidance with native sandbox checks, calendar bounds and explicit custom planting windows."
+    },
+    {
+      "status": "Foundation",
+      "text": "Console crop inspection and save/reload-aware calendar diagnostics; native synchronization still requires runtime tests."
+    },
+    {
+      "status": "Planned",
+      "text": "Player-facing field UI, soil/equipment systems and automated irrigation are not implemented."
+    },
+    {
+      "status": "Blocked",
+      "text": "Stable release requires dedicated MP evidence; Workshop test distribution does not satisfy G7."
+    }
+  ],
+  "limits": "Offline Lua 5.4/5.1 fixtures and source checks only. SP/dedicated NOT TESTED. G7 and stable G8 BLOCKED. No hard dependency; seasonal calendar advice needs optional weatherWorks/map context.",
+  "evidence": [
+    "README.md",
+    "docs/ARCHITECTURE.md",
+    "docs/IRRIGATION_API.md",
+    "docs/VALIDATION.md",
+    "Contents/mods/B47ANCEDHarvest/42/mod.info"
+  ],
+  "relations": [
+    {
+      "target": "weather",
+      "kind": "Optional",
+      "text": "Consumes weatherWorks calendar observations when available; absent or incompatible context disables advice."
+    },
+    {
+      "target": "water",
+      "kind": "Planned",
+      "text": "Waterworks retains source withdrawal/quality; atomic delivery and crop-effect coupling are not implemented."
+    }
+  ]
+}

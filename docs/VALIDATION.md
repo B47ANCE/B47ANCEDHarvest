@@ -89,3 +89,25 @@ remain untested. See TESTING.md and IRRIGATION_API.md for scenarios.
 G7: dedicated multiplayer NOT TESTED / BLOCKED. Stable-release G8: BLOCKED.
 No current package, deployment, Workshop upload, merge or stable tag authorized
 by this iteration's commit/push request. Historical assets/packages are preserved.
+
+## Authorized Workshop MP test preparation
+
+A subsequent publish request on 2026-10-17 authorizes distribution testing of
+this same 0.9.1 runtime, not stable-release approval. Preparation uses
+release/harvest-0.9.1-mp-test from the verified hardening merge. Runtime Lua and
+saved schemas are unchanged. Root Workshop text is canonical; current-only
+change notes exclude the historical sections from the actual update.
+scripts/build_workshop.py is an offline-only packager. The installed historical
+Farmworks VDF is retained; it identifies item 3788591121 but its content path
+no longer exists. Fresh staging uses only committed current source.
+Full semantic game version remains UNKNOWN; exact Steam build is recorded.
+The unauthenticated live item lookup is unavailable, so live-page comparison is
+unverified; upload VDF omits visibility/tags to preserve existing settings.
+Upload success must be recorded separately from offline checks and G7/G8.
+
+Publication preflight re-ran all nine fixtures on explicit Lua 5.4 and Lua 5.1
+hosts using isolated Python 3.12/Lupa 2.8, plus identity/case/preservation checks:
+PASS, all 145 historical/artwork hashes unchanged. The current bundled runtime
+had no Lupa, so a dedicated developer test environment was created outside the
+repository; no test dependency enters runtime content. Official Steamworks
+description bound was checked as 8000 bytes, with actual paragraphs preserved.

@@ -35,5 +35,12 @@
   ],
   "public_repository": "https://github.com/B47ANCE/B47ANCEDHarvest",
   "initial_import_branch": "feature/harvest-0.9.0",
-  "local_history_validation": "python scripts/check_identity.py --require-local-history"
+  "local_history_validation": "python scripts/check_identity.py --require-local-history",
+  "generated_outputs": [
+    "dist/current/staging",
+    "dist/current/*-workshop-ready.zip",
+    "dist/current/upload.vdf",
+    "dist/current/release-manifest.json"
+  ],
+  "package_command": "python scripts/build_workshop.py --game-root <verified installed game root>"
 }

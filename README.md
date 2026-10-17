@@ -72,3 +72,16 @@ have changed the crop; the additive third return value reports partial,
 unchanged or unknown water effects without authorizing automatic retries.
 See [the irrigation contract](docs/IRRIGATION_API.md). No new user sandbox
 setting is needed: these are safety checks and existing vanilla configuration.
+
+## Workshop test distribution
+
+An explicit publish request authorizes this version's MP test distribution to
+existing item 3788591121. Description and current change notes carry the exact
+MP-testing label. Runtime Lua remains the reviewed hardening source; no stable
+release tag, automatic deployment, server launch or Steam desktop restart is
+part of packaging/upload. See [publishing](docs/PUBLISHING.md).
+
+scripts/build_workshop.py creates deterministic committed-source ZIP/staging
+and a release manifest under ignored dist/current. It does not upload, overwrites
+no existing outputs, and ships only the selected mod. Steam receives staging/
+Contents as its content folder; the ZIP retains the authoring Contents layout.

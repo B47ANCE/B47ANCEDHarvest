@@ -6,6 +6,8 @@ B47ANCE'd Harvest normalizes vanilla and compatible crops while exposing bounded
 
 [b]Mod Version: 0.9.1[/b]
 
+[b]MP testing build - dedicated multiplayer NOT TESTED[/b]
+
 [b]Development Status[/b]
 
 This is an API foundation under active development, not yet a standalone farming overhaul.
@@ -37,6 +39,18 @@ This is an API foundation under active development, not yet a standalone farming
 [*]Transactional coupling between waterWorks supply and B47ANCE'd Harvest crop application
 [*]Implements, machinery, orchards, fencing, and multiplayer validation
 [/list]
+
+[h2]Compatibility and Configuration[/h2]
+
+Build 42 API foundation. Offline Lua 5.4/5.1 fixtures pass; SP and dedicated multiplayer are NOT TESTED. Seasonal advice respects the server's native PlantGrowingSeasons setting. The base module has no hard mod dependencies; seasonal advice requires the optional weatherWorks calendar and an explicit map context.
+
+[h2]Source Code and Development[/h2]
+
+[url=https://github.com/B47ANCE/B47ANCEDHarvest]GitHub — Source Code & Issues[/url]
+
+[h2]Known Limitations[/h2]
+
+This is a framework foundation with console diagnostics, not a standalone farming overhaul. There is no player-facing field-management UI or automatic irrigation loop. Water-source withdrawal and crop application are not an atomic transaction; partial/unknown provider effects require reconciliation. Native calendar, save/load, join/rejoin and server restart validation remain pending. G7 and stable-release G8 remain blocked.
 
 [b]Credits[/b]
 Project Director & Designer: B47ANCE

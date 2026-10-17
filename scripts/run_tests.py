@@ -1,7 +1,7 @@
 """Run the existing Lua host fixtures in isolated Lupa runtimes; never starts PZ."""
 from pathlib import Path
 import argparse
-from lupa import LuaRuntime
+from lupa.lua54 import LuaRuntime
 
 ROOT = Path(__file__).resolve().parents[1]
 MODS = list((ROOT / "Contents/mods").glob("*/42/mod.info"))

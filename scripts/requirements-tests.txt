@@ -1,0 +1,2 @@
+# Developer-only Lua hosts; never included in the runtime mod package.
+lupa==2.8

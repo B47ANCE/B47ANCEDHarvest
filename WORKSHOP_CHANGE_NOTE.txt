@@ -1,5 +1,7 @@
 [b]Version 0.9.1[/b]
 
+[b]MP testing build - dedicated multiplayer NOT TESTED[/b]
+
 [h2]Harvest hardening[/h2]
 
 • Fix empty furrows being counted as living crops.
@@ -7,7 +9,7 @@
 • Respect PlantGrowingSeasons and reject malformed seasonal/calendar input.
 • Prevent rejected planting guidance registrations from consuming capacity.
 • Add eight regression groups. Dedicated multiplayer NOT TESTED; stable G8 BLOCKED.
-• Source development iteration only; no Workshop upload or local deployment.
+• Workshop MP test distribution of 0.9.1; SP and dedicated multiplayer NOT TESTED. No stable-release approval.
 
 [b]Historical 0.9.0 changenote — original evidence retained[/b]
 
