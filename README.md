@@ -1,0 +1,60 @@
+# B47ANCE'd Harvest
+
+B47ANCE'd Harvest is the farming and agricultural-infrastructure project. Its first
+foundation extends vanilla Build 42 crops through read-only adapters rather
+than replacing them.
+
+- Status: version `0.9.0` bounded crop/irrigation APIs plus deterministic
+  seasonal guidance backed by live vanilla crop definitions and the optional
+  weatherWorks calendar and a save/reload-aware native date probe; native date synchronization remains unverified and
+  this is not yet a gameplay release.
+
+See [docs/B42_API_RESEARCH_HANDOFF.md](docs/B42_API_RESEARCH_HANDOFF.md) for the Build 42 farming audit plan. The current API normalizes vanilla and registered third-party crops and produces field summaries; mutation, automation, and machinery remain gated behind focused tests.
+Approved feature research is allocated in [docs/ROADMAP.md](docs/ROADMAP.md).
+Field inspection is cursor-paged under a hard 1,024-crop ceiling. The irrigation
+planner derives per-crop and aggregate water demand from normalized live crop
+state without mutating crops or assuming waterWorks supply availability.
+`applyIrrigation` now applies already-delivered whole irrigation uses through a
+provider-owned authoritative method. The vanilla provider calls the verified
+Build 42 `SPlantGlobalObject:water(nil, uses)` path, clamps work to the current
+target deficit, rejects client-side mutation, and verifies the resulting crop
+water level. It does not choose or withdraw a waterWorks source.
+
+For development inspection, `B47ANCEDHarvestDebugInspect(radius)` samples only the
+current Z level in a square radius clamped to 0–10 tiles. It resolves crops
+through Build 42's `CFarmingSystem.instance:getLuaObjectOnSquare`, then prints
+canonical field totals and non-mutating irrigation demand. It does not create a
+field, reveal a player-facing farming panel, or alter crops.
+- Hard dependencies: none beyond Project Zomboid for its base module.
+- Optional integrations: animalWorks, waterWorks, powerWorks, and lightWorks.
+- Ownership: crop/soil enhancements, agricultural implements, irrigation
+  effects, farm transport content, and electric-fence gameplay.
+
+Assets are staged under `Contents/mods/B47ANCEDHarvest/`: Steam `thumbnail.png` at the mod root,
+with the Build 42 `poster.png` and canonical `icon.png` under `42/`.
+
+## Identity and compatibility
+
+- Display name: B47ANCE'd Harvest.
+- Mod ID and authoritative mod folder: `B47ANCEDHarvest`.
+- Existing Workshop item: `3788591121` (unchanged; rename not uploaded).
+- Previous Mod ID: `farmWorks`. Update enabled-mod lists to `B47ANCEDHarvest`;
+  do not enable both identities. Re-enable the mod after changing the ID.
+  Existing-save compatibility remains a runtime gate.
+- Canonical Lua entry: `require "B47ANCEDHarvest/API"` and global
+  `B47ANCEDHarvest`. Legacy `farmWorks` globals, require paths and commands
+  share the same implementation and provider registry.
+- Retain diagnostic ModData key `farmWorks.CalendarProbe.v1` unchanged;
+  no schema migration or parallel crop/save state.
+
+`Contents/mods/B47ANCEDHarvest/` is authoritative runtime source. Root Workshop
+text is authoring metadata. `dist/`, checksum ledgers and the last-upload marker
+are historical outputs, not current source or publication proof.
+
+See [versioning](docs/VERSIONING.md), [validation](docs/VALIDATION.md), and
+[testing](docs/TESTING.md). Root `VERSION` is canonical. Public source repository:
+[B47ANCE/B47ANCEDHarvest](https://github.com/B47ANCE/B47ANCEDHarvest).
+The initial development import is on `feature/harvest-0.9.0` for PR review;
+`main` initially contains repository bootstrap rules. Historical output archives
+and private developer settings remain local and are excluded from Git.
+G7 dedicated multiplayer NOT TESTED / BLOCKED; stable-release G8 BLOCKED.

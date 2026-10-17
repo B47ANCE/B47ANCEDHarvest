@@ -1,0 +1,38 @@
+{
+  "project": "B47ANCE'd Harvest",
+  "canonical_version": "VERSION",
+  "mod_ids": [
+    "B47ANCEDHarvest"
+  ],
+  "workshop_ids": [
+    "3788591121"
+  ],
+  "authoritative_runtime_roots": [
+    "Contents/mods/B47ANCEDHarvest"
+  ],
+  "authoring_metadata": [
+    "README.md",
+    "CHANGELOG.md",
+    "WORKSHOP_DESCRIPTION.txt",
+    "WORKSHOP_CHANGE_NOTE.txt",
+    "workshop.txt",
+    "WORKSHOP_ID.txt"
+  ],
+  "historical_outputs": [
+    "dist/",
+    "SHA256SUMS.txt",
+    ".steamcmd-last-upload.sha256"
+  ],
+  "legacy_compatibility": [
+    "farmWorks Lua namespace/require paths/debug commands",
+    "farmWorks.CalendarProbe.v1 diagnostic ModData key"
+  ],
+  "validation": [
+    "python scripts/check_versions.py --root . --json",
+    "python scripts/run_tests.py",
+    "python scripts/check_identity.py"
+  ],
+  "public_repository": "https://github.com/B47ANCE/B47ANCEDHarvest",
+  "initial_import_branch": "feature/harvest-0.9.0",
+  "local_history_validation": "python scripts/check_identity.py --require-local-history"
+}

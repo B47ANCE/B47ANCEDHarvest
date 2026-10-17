@@ -1,0 +1,57 @@
+[b]Version 0.9.0[/b]
+
+[h2]B47ANCE'd Harvest rename[/h2]
+
+• Renamed the project and active mod folder to B47ANCE'd Harvest / B47ANCEDHarvest.
+• Changed Mod ID from farmWorks to B47ANCEDHarvest. Update enabled-mod lists and do not enable both identities.
+• Kept the same Workshop item, legacy Lua API, and diagnostic save key; added B47ANCEDHarvest Lua entry points.
+• Established canonical VERSION and version checks. Gameplay behavior is unchanged.
+• Dedicated multiplayer NOT TESTED; stable-release G8 BLOCKED. Local source iteration, not an upload.
+
+[b]Historical changenotes — original versions and names retained[/b]
+
+[b]Version 0.8.0[/b]
+
+[h2]Seed seasonal guidance[/h2]
+
+• Resolves seed items through the live Build 42 crop registry without copied crop tables.
+• Rejects ambiguous mappings and bounds crop/provider inspection.
+• Exposes optional UI guidance only when a map integration supplies explicit region and hemisphere.
+
+[b]Previous 0.7.0 changes[/b]
+
+[h2]Native calendar validation probe[/h2]
+
+• Added explicit-region live date diagnostics without advancing game time.
+• Added raw-versus-normalized date checks and monotonic world-age verification.
+• Added a save/reload session gate so same-session observations cannot be mistaken for persistence proof.
+
+[b]Previous 0.6.0 changes[/b]
+
+[h2]Live vanilla seasonal guidance[/h2]
+
+• Reads the live vanilla crop registry instead of copying planting tables.
+• Combines sow, best, and risk months with weatherWorks' normalized Build 42 calendar.
+• Missing, disabled, or malformed definitions fail closed without changing crop growth.
+
+[b]Previous 0.5.0 changes[/b]
+
+[h2]Seasonal planting guidance[/h2]
+
+• Added read-only crop windows bound to an explicit calendar ID and year length.
+• Added ideal, possible, poor, and unavailable advisory states.
+• Added wrap-around windows and explicit region/hemisphere assumptions.
+• Calendar mismatch and missing crop data fail closed; growth and time are never mutated.
+
+[b]Version 0.4.1[/b]
+
+[h2]Added Features[/h2]
+
+• Snapshotted crop-provider registrations so external mutation cannot replace canonical callbacks or priorities.
+• Added detached normalized crop views that do not mutate provider-owned result tables.
+• Added focused registry and inspection ownership regressions.
+
+[h2]Roadmap[/h2]
+
+• Couple waterWorks supply transactions to farmWorks crop application.
+• Add agricultural infrastructure, implements, machinery, orchards, and multiplayer validation.
