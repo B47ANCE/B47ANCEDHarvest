@@ -47,3 +47,12 @@ optional uiWorks badges. It supplies no guessed geographic default.
 3. Prove deterministic advice across year boundaries and altered calendars.
 4. Add optional UI only after the read model is stable.
 5. Validate save/load, hosted, and dedicated date consistency.
+
+## Hardening follow-up
+
+Version 0.9.1 fixes the audited crop/season/calendar/authority boundaries and adds
+regressions for all eight cases. Before irrigation consumers, prove native
+startup, seasonal configuration, save/reload and dedicated synchronization.
+Partial/unknown irrigation receipts are not an atomic source-water transaction.
+A small read-only inspector is the next feature slice after those checks;
+soil simulation, machinery and autonomous irrigation remain later work.

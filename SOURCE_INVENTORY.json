@@ -30,7 +30,8 @@
   "validation": [
     "python scripts/check_versions.py --root . --json",
     "python scripts/run_tests.py",
-    "python scripts/check_identity.py"
+    "python scripts/check_identity.py",
+    "python scripts/run_tests.py --lua51"
   ],
   "public_repository": "https://github.com/B47ANCE/B47ANCEDHarvest",
   "initial_import_branch": "feature/harvest-0.9.0",

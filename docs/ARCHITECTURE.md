@@ -60,3 +60,27 @@ or dedicated agreement until those tests are performed.
 Version 0.8.0 adds bounded live-registry seed resolution and priority-ordered
 map-context providers. Multiple crop matches, malformed registries, and missing
 region/hemisphere data fail closed.
+
+Version 0.9.1 corrects adapter and boundary defects without adding an autonomous
+gameplay loop. The vanilla provider excludes plow/none-seed furrows. Provider
+inspection exposes waterLevelKnown; mutation requires a real finite observation.
+
+Authority now fails closed unless isClient() explicitly returns false. The
+provider call and its readback share one crop lock. Error/rejection/readback
+mismatch retain the existing boolean and reason and add a transient third
+receipt with partial, unchanged or unknown outcome and retrySafe=false. See
+IRRIGATION_API.md for accounting limitations; this is not a source-water
+transaction or a retry/deduplication protocol.
+
+Vanilla seasonal advice reads getSandboxOptions():getOptionByName(
+"PlantGrowingSeasons"):getValue(). A caller may suppress advice but cannot
+override disabled/unknown native configuration. No custom gameplay knob is
+introduced: authoritative settings stay vanilla, while calendar IDs, quotas,
+ten-point doses and page limits remain implementation/provider contracts.
+
+Optional best/risk arrays are validated independently. Native month windows
+require the Gregorian calendar identifier and 365/366-day year; explicit custom
+calendars remain supported through registered planting windows. Generic days
+must be bounded integers, and registrations commit their ID/quota only after
+window validation succeeds. No crop-growth, persistence or diagnostic-key
+ownership changes occur. Dedicated synchronization remains untested.

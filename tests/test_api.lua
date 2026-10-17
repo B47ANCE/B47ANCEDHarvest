@@ -34,7 +34,7 @@ assert(not fractional and fractionalErr=="positive whole irrigation-use count re
 _G.isClient=function()return true end
 local clientApplied,clientErr=api.applyIrrigation(crops[2],1,{targetWater=100})
 assert(not clientApplied and clientErr=="irrigation application requires server or single-player authority")
-_G.isClient=nil
+_G.isClient=function()return false end
 
 local cachedModel={cropType="Mod",waterLevel=150}
 local providerDefinition={id="test.mod",priority=200,matches=function(c)return c.modCrop end,

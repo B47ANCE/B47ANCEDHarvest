@@ -103,6 +103,10 @@
     {
       "reference": "docs/B42_API_RESEARCH_HANDOFF.md; docs/IRRIGATION_RUNTIME_AUDIT.md",
       "reason": "Earlier Build 42.20 research/source claims, not newly verified 42.21 or runtime proof."
+    },
+    {
+      "reference": "docs/history/VALIDATION-0.9.0.md",
+      "reason": "Immutable previous iteration validation. Does not establish 0.9.1 runtime or release proof."
     }
   ]
 }

@@ -1,94 +1,91 @@
-# B47ANCE'd Harvest rename validation
+# B47ANCE'd Harvest hardening validation
 
-Project Version: 0.9.0
+Project Version: 0.9.1
 
-Scope: user-approved local/offline rename on 2026-10-16 (America/Phoenix).
-This file records offline evidence only. No game/server was launched.
+Scope: eight audited defects from 0.9.0, corrected on fix/harvest-0.9.1.
+Prior evidence is archived unchanged in history/VALIDATION-0.9.0.md.
+No game/server was launched. All PASS statements below are offline checks.
 
-## Baseline
+## Baseline and regressions
 
-- [VERIFIED] The old README, API and mod.info reported 0.8.0.
-- [VERIFIED] No .git, root VERSION, version inventory or existing checker.
-- [UNKNOWN] GitHub freshness: Test-PZRepositoryFreshness.ps1 -Repository
-  <old farmWorks root> returned UNKNOWN: not a Git repository.
-- [TESTED: offline] Seven existing Lua fixtures passed before the rename.
-- [TESTED: offline] The newly installed standard version checker initially
-  failed because the legacy project had no version-inventory.json. This is a
-  recorded onboarding gap, not a baseline PASS.
+- [VERIFIED] Start commit fbcde2b1c209cba172c295f0ca4c857686121515, merged main;
+  startup freshness PASS with a clean tree and zero divergence.
+- [TESTED: offline] Existing eight fixtures PASS on 0.9.0. The newly added
+  hardening fixture reproduced all eight regression-group failures before fixes.
+- [TESTED: offline, Windows/Lupa Lua 5.4] Nine fixtures PASS after fixes.
+- [TESTED: offline, Windows/Lupa Lua 5.1] The same nine fixtures PASS; this is
+  host language compatibility, not Kahlua or native-game execution.
 
-## Current checks
+The eight groups cover unknown/client mutation authority; provider partial,
+rejected, mismatched, malformed, changed-provider and unavailable readback;
+furrow classification; authoritative season disable/unknown configuration;
+optional malformed month arrays; invalid calendar days; incompatible native
+calendars while retaining custom-window support; and failed registrations not
+consuming quota/IDs. The quota ceiling and valid year-wrap behavior still pass.
 
-No former source/runtime claim is upgraded by renaming. Compatibility retains
-the original API, client-authority rejection,
-provider registry, diagnostic storage key and schemas. Branded entry points are
-aliases; no gameplay or meaningful configuration behavior changes, so no new
-sandbox setting is warranted for this identity-only iteration.
+## Source evidence and ownership
 
-- [TESTED: offline, bundled Python/Lupa] Eight Lua host fixtures PASS, including
-  new/legacy API identity, one provider registry, command aliases and the
-  original diagnostic storage key.
-- [TESTED: offline] Canonical 0.9.0 and all eleven current mirrors PASS the
-  standard version inventory checker.
-- [TESTED: offline] All fourteen runtime Lua files compile; require paths match
-  exact source path case and no case collisions or Java/JAR/class files exist.
-  This is source validation, not Linux runtime proof.
-- [TESTED: offline] Source Mod ID/name/folder, Workshop item 3788591121 and
-  public visibility verified; workshop.txt description matches the authoring
-  description with actual paragraph breaks.
-- [TESTED: offline] All 145 protected files match pre-rename SHA-256, including
-  artwork, historical staging/packages and upload/checksum records. Portable
-  baseline hashes: RENAME_PRESERVATION.json. Original path names in that ledger
-  are historical; only Contents/mods/farmWorks maps to the new source folder.
-- [TESTED: local workspace] Four workspace selectors now target the renamed
-  directory; each workspace JSON parses successfully.
-- [TESTED: offline] Release version check correctly FAILS because no current
-  package exists. That expected gate failure is not a failed source mirror.
+Installed Steam build: 25485521. Exact full game version: UNKNOWN in this pass.
+- [VERIFIED] SPlantGlobalObject initializes new furrows as plow/none-seed, while
+  its isAlive predicate also accepts that state; the provider now excludes it.
+- [VERIFIED] Native ISFarmingMenu reads PlantGrowingSeasons through the same
+  sandbox-options accessor used by the new adapter. Source fingerprint:
+  c3c9413f414f49f0e9639361d2bfb79397d023d30cdd80d566d5293c364948c3.
+- [VERIFIED] Native ten-point watering/saveData source is unchanged; see
+  IRRIGATION_RUNTIME_AUDIT.md for fingerprint and exact source spans.
+- Client intent/networking is not added. Unknown realm rejects; server/SP calls
+  use verified native crop mutation. Source withdrawal remains waterWorks-owned.
+- Receipts are transient and additive, not a persistence/schema migration or
+  atomic source-water transaction. No safe automatic retry/rollback is claimed.
+- Configuration assessment: use the existing native PlantGrowingSeasons option.
+  Safety checks, Gregorian/provider IDs and technical page/registry limits do not
+  introduce meaningful new gameplay settings and remain internal contracts.
 
-## Runtime gates and backup
+## Additional checks
 
-- [RUNTIME GATE] Changed Mod ID requires re-enabling/updating enabled-mod lists.
-  Do not enable old and new identities together.
-- [RUNTIME GATE] Existing save, subscription/download, native calendar, hosted,
-  dedicated join/rejoin, synchronization, persistence and restart checks remain.
-- G7: dedicated multiplayer NOT TESTED / BLOCKED.
-- G8: stable release BLOCKED. No current package is built.
-- The earlier local rename had no Git backup. Public GitHub onboarding was
-  subsequently authorized for B47ANCE/B47ANCEDHarvest; the initial source import
-  uses feature/harvest-0.9.0 with a PR into main. Verify pushed SHA as described
-  in GITHUB.md; a GitHub push is not runtime or release evidence.
-- Deploy/publish: not requested, not performed. Workshop ID/visibility unchanged.
+- [TESTED: offline] Canonical 0.9.1 and all eleven declared current mirrors
+  PASS; historical records retain their original version labels.
+- [TESTED: offline] All fourteen runtime Lua sources compile, require paths
+  match source case, and no source case collisions or Java/JAR/class files exist.
+  Static case validation is not Linux runtime proof.
+- [TESTED: original workspace] Identity/Workshop-description parity PASS and all
+  145 protected historical/artwork/upload/checksum files retain their SHA-256.
+- [TESTED: isolated Git export] Version/identity checks and all nine fixtures
+  PASS on both Lua 5.4 and 5.1 hosts. Five portable protected files match hashes;
+  the 140 omitted local output files are explicitly not validated in the export.
+- [TESTED: staged public-file audit] All 55 UTF-8 files and three PNG assets
+  scanned for credential patterns and excluded filenames; no findings.
+  git diff --cached --check PASS. No dedicated scanner/CI result is claimed.
+- [TESTED: release gate] --release correctly fails only for the absent current
+  package. This does not invalidate the passing source-version mirrors.
+- [VERIFIED] Archived history/VALIDATION-0.9.0.md matches the previous main
+  validation content; no prior runtime evidence is relabeled as current.
 
-## Verification commands
+## Exact validation commands
 
-Bundled Python:
+Use Python 3 with Lupa. This workspace's interpreter:
 C:/Users/willi/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe
 
-Run with that interpreter:
+Arguments run from the project root:
 - scripts/check_versions.py --root . --json
 - scripts/run_tests.py
+- scripts/run_tests.py --lua51
 - scripts/check_identity.py
-- scripts/check_identity.py --require-local-history (original workspace only)
+- scripts/check_identity.py --require-local-history
 - scripts/check_versions.py --root . --release --json
 
-Historical outputs, artwork and upload ledgers have a pre-rename SHA-256
-preservation ledger outside the source tree and a portable copy in
-RENAME_PRESERVATION.json. check_identity.py compares every original entry with
-its current location, accounting only for the renamed active mod directory.
-No artifact cleanup or repackaging is part of this change.
+Git checks:
+- git diff --cached --check
+- git status --short --ignored
+- shared tools/Test-PZRepositoryFreshness.ps1 -Repository <project root>
+- git rev-parse HEAD
+- git ls-remote --heads origin fix/harvest-0.9.1
 
-## Public-checkout validation
+## Runtime and release gates
 
-By default, check_identity.py verifies every available protected historical file
-and requires the source artwork, Workshop ID and checksum ledger. Missing ignored
-dist outputs and the local upload marker are explicitly reported as omitted,
-not passed. --require-local-history requires all 145 files in the original
-workspace. Public exports therefore do not need private local build artifacts.
-
-[TESTED: offline, Git tree export] Version checks, all eight Lua fixtures and
-portable identity checks PASS in an isolated export of the staged source tree.
-Five portable protected files retain their SHA-256; 140 absent local output
-files are reported as omitted. The original workspace strict check still
-passes all 145 entries. [TESTED: staged audit] All 52 UTF-8 files and three PNGs
-were inspected for excluded filenames and high-confidence credential patterns;
-no findings. git diff --cached --check PASS. This is a bounded local audit;
-no CI or dedicated scanner result is claimed.
+[RUNTIME GATE] Native startup, SP save/reload, server-authoritative option
+agreement, hosted/dedicated joining/rejoining, crop replication and restarts
+remain untested. See TESTING.md and IRRIGATION_API.md for scenarios.
+G7: dedicated multiplayer NOT TESTED / BLOCKED. Stable-release G8: BLOCKED.
+No current package, deployment, Workshop upload, merge or stable tag authorized
+by this iteration's commit/push request. Historical assets/packages are preserved.

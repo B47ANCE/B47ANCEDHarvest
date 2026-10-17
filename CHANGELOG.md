@@ -1,5 +1,21 @@
 # B47ANCE'd Harvest changelog
 
+## 0.9.1
+
+- Reject crop mutation when the engine authority probe is missing, throws or
+  returns a non-boolean result.
+- Add explicit non-retryable irrigation failure receipts for observed partial,
+  unchanged or unknown crop-water effects, without rollback or automatic retry.
+- Exclude empty/plowed furrows from crop counts, water summaries and irrigation.
+- Read the native PlantGrowingSeasons option; caller flags cannot enable advice
+  when the native option disables it or configuration is unavailable.
+- Reject malformed optional planting months, incompatible native calendars and
+  non-integer/out-of-range calendar days. Keep explicit custom-window calendars.
+- Commit planting guidance registrations only after complete validation so
+  failed registrations consume no quota or crop ID.
+- Add regressions for all eight audited defects. Validation remains offline;
+  G7 dedicated multiplayer NOT TESTED / BLOCKED and stable G8 BLOCKED.
+
 ## 0.9.0
 
 - Rename farmWorks to B47ANCE'd Harvest, including Mod ID and active mod folder
