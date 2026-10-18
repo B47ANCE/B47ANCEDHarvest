@@ -2,7 +2,7 @@ local legacy=require "farmWorks/API"
 local branded=require "B47ANCEDHarvest/API"
 assert(branded==legacy and _G.B47ANCEDHarvest==legacy and _G.farmWorks==legacy,
     "both identities must share one API and authoritative provider registry")
-assert(branded.VERSION=="0.9.2")
+assert(branded.VERSION=="0.9.3")
 branded.registerCropProvider{id="rename.fixture",priority=1,matches=function()return false end,inspect=function()return{}end}
 assert(legacy.CropProviders["rename.fixture"]==branded.CropProviders["rename.fixture"])
 for _,name in ipairs({"SeasonalGuidance","VanillaSeasonalGuidance","SeedGuidance"})do

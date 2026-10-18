@@ -1,6 +1,6 @@
 # B47ANCE'd Harvest version inventory
 
-Canonical Project Version: 0.9.2.
+Canonical Project Version: 0.9.3.
 
 On 2026-10-16 (America/Phoenix), the user approved the local/offline rename and
 establishing canonical VERSION. Observed previous README, API and mod.info
@@ -51,3 +51,14 @@ art/harvest-0.9.2-thumbnail. A subsequent publish request authorizes packaging
 and MP test distribution; the version remains 0.9.2 with no gameplay changes.
 The published 0.9.1 outputs remain in the original checkout; current 0.9.2
 outputs are generated separately after source commit/validation. Historical validation is retained as VALIDATION-0.9.1.md.
+
+## 0.9.3 mod icon iteration
+
+0.9.3 is a cosmetic PATCH: replace only the runtime mod icon with the selected
+transparent artwork at the existing 32 x 32 dimensions. Thumbnail and preview
+hashes stay identical to 0.9.2. Gameplay, public APIs, sandbox configuration,
+Mod ID, Workshop ID and saved schemas are unchanged. The Lua VERSION mirror
+changes only to report the canonical version. Work starts from PR #4 merge
+244a446 on art/harvest-0.9.3-icon. The user authorizes the reviewed PR merge and
+MP test publication after checks. Current packages are generated separately;
+prior output trees remain intact. No stable tag or native runtime proof.

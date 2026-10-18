@@ -26,5 +26,24 @@
     "max_bytes_exclusive": 1000000,
     "method": "Pillow thumbnail LANCZOS; optimized PNG compression level 9",
     "pillow_version": "12.3.0"
+  },
+  "mod_icon": {
+    "source": "assets/branding/harvest-icon-source.png",
+    "source_sha256": "5bb867aa9dd305d0e155405f9bc81aa455e21e0854fb5152e17c136451593c4d",
+    "source_width": 1254,
+    "source_height": 1254,
+    "source_provenance": "Built-in image generation from the Harvest thumbnail: isolated trowel and seed packet; user selected it as the mod icon.",
+    "prompt": "assets/branding/harvest-icon.prompt.txt",
+    "path": "Contents/mods/B47ANCEDHarvest/42/icon.png",
+    "sha256": "6658e6e1b8bc90a3ffa1531140c5b82bdab63e5cf802cc1bd0ae1ee7ac7efcb9",
+    "width": 32,
+    "height": 32,
+    "mode": "RGBA",
+    "transparent_background": true,
+    "export_method": "Pillow LANCZOS to existing 32 x 32 icon size; optimized PNG level 9",
+    "pillow_version": "12.3.0",
+    "previous_path": "assets/history/icon-before-0.9.3.png",
+    "previous_sha256": "56dd988ad4672f7e1ed7ab11333e97e6d65a5015ea440cfffc8eae242cf70822",
+    "original_preservation_key": "Contents/mods/farmWorks/42/icon.png"
   }
 }

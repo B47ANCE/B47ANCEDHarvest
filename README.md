@@ -4,7 +4,7 @@ B47ANCE'd Harvest is the farming and agricultural-infrastructure project. Its fi
 foundation extends vanilla Build 42 crops through read-only adapters rather
 than replacing them.
 
-- Status: version `0.9.2` bounded crop/irrigation APIs plus deterministic
+- Status: version `0.9.3` bounded crop/irrigation APIs plus deterministic
   seasonal guidance backed by live vanilla crop definitions and the optional
   weatherWorks calendar and a save/reload-aware native date probe; native date synchronization remains unverified and
   this is not yet a gameplay release.
@@ -32,8 +32,9 @@ field, reveal a player-facing farming panel, or alter crops.
 
 The owner-supplied Harvest PNG is kept unchanged at
 `Contents/mods/B47ANCEDHarvest/thumbnail.png` for the mod poster. Root
-`preview.png` is the approved 960 x 960 Workshop export (954,246 bytes). Build 42 metadata uses `poster=thumbnail.png`; the small `42/icon.png`
-is unchanged. [Artwork provenance](docs/ARTWORK.json) records dimensions/hashes
+`preview.png` is the approved 960 x 960 Workshop export (954,246 bytes). Build 42 metadata uses `poster=thumbnail.png`. The 32 x 32 RGBA
+`42/icon.png` uses the selected trowel-and-seed-packet cutout with no text or
+background fill; its full-resolution source and prior icon are preserved. [Artwork provenance](docs/ARTWORK.json) records dimensions/hashes
 and the preserved previous image. Workshop distribution uses the validated
 preview export described there.
 
@@ -59,8 +60,8 @@ See [versioning](docs/VERSIONING.md), [validation](docs/VALIDATION.md), and
 [testing](docs/TESTING.md). Root `VERSION` is canonical. Public source repository:
 [B47ANCE/B47ANCEDHarvest](https://github.com/B47ANCE/B47ANCEDHarvest).
 The initial import, 0.9.1 hardening and publication preparation merged through
-PRs #1–#3. The cosmetic 0.9.2 iteration uses `art/harvest-0.9.2-thumbnail` for
-PR review. Historical output archives
+PRs #1–#4. The cosmetic 0.9.3 icon iteration uses
+`art/harvest-0.9.3-icon` for PR review. Historical output archives
 and private developer settings remain local and are excluded from Git.
 G7 dedicated multiplayer NOT TESTED / BLOCKED; stable-release G8 BLOCKED.
 
@@ -81,8 +82,9 @@ setting is needed: these are safety checks and existing vanilla configuration.
 ## Workshop test distribution
 
 Version 0.9.1 was uploaded as an MP testing build to existing item 3788591121.
-A subsequent explicit publish request authorizes packaging and Workshop MP test
-distribution of the cosmetic 0.9.2 iteration. Description and current change
+The explicit icon/merge/publish request authorizes packaging and Workshop MP
+test distribution of cosmetic 0.9.3 after checks and PR merges. The thumbnail
+and Workshop preview retain their 0.9.2 bytes. Description and current change
 notes retain the MP-testing label. See [publishing](docs/PUBLISHING.md).
 
 scripts/build_workshop.py creates deterministic committed-source ZIP/staging
