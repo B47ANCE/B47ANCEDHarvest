@@ -16,12 +16,16 @@
     "WORKSHOP_DESCRIPTION.txt",
     "WORKSHOP_CHANGE_NOTE.txt",
     "workshop.txt",
-    "WORKSHOP_ID.txt"
+    "WORKSHOP_ID.txt",
+    "preview.png",
+    "docs/ARTWORK.json"
   ],
   "historical_outputs": [
     "dist/",
     "SHA256SUMS.txt",
-    ".steamcmd-last-upload.sha256"
+    ".steamcmd-last-upload.sha256",
+    "assets/history/thumbnail-before-0.9.2.png",
+    "docs/history/VALIDATION-0.9.1.md"
   ],
   "legacy_compatibility": [
     "farmWorks Lua namespace/require paths/debug commands",

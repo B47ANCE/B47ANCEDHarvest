@@ -4,10 +4,15 @@ Canonical inputs: root WORKSHOP_DESCRIPTION.txt and WORKSHOP_CHANGE_NOTE.txt,
 workshop.txt, VERSION, WORKSHOP_ID.txt, preview.png and authoritative Contents/
 mods/B47ANCEDHarvest. Keep their established BBCode and paragraph breaks.
 
-Runtime version remains 0.9.1; this is distribution preparation of the approved
-hardening, not a new gameplay iteration. Build from a clean, committed, freshly
-verified branch containing merged main. The user authorized the existing item's
-upload; no new item, visibility change, stable tag, deployment or server action.
+The prior 0.9.1 MP test upload succeeded. Current 0.9.2 is a source-only artwork
+iteration; no package/upload is authorized by the thumbnail update. A future
+publish request must re-run preflight against the exact current source and
+verify the new image against the uploader's preview requirements. Prior upload
+evidence is not proof of this artwork being distributed.
+
+Build from a clean, committed, freshly verified branch containing merged main.
+Do not create a new item, change visibility, create a stable tag, deploy or
+launch a server as part of packaging.
 
 Run with Python 3 and developer-only Lupa from scripts/requirements-tests.txt.
 The test runner explicitly selects Lua 5.4 (or --lua51) rather than depending

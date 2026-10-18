@@ -1,5 +1,12 @@
 # B47ANCE'd Harvest changelog
 
+## 0.9.2
+
+- Apply the user-supplied 1254 x 1254 PNG unchanged to the project thumbnail
+  and Workshop preview. Preserve the previous artwork and validation evidence.
+- Cosmetic PATCH; gameplay, configuration, APIs, schemas and small icon are
+  unchanged. Source-only iteration; no package, deployment or upload.
+
 ## 0.9.1
 
 - Prepare explicitly labelled Workshop MP test distribution with public source
