@@ -1,5 +1,5 @@
 local farmWorks=rawget(_G,"farmWorks") or {}
-farmWorks.VERSION="0.9.2"
+farmWorks.VERSION="0.9.3"
 farmWorks.CropProviders=farmWorks.CropProviders or {}
 farmWorks.MAX_FIELD_PAGE=1024
 farmWorks._IrrigationLocks=farmWorks._IrrigationLocks or setmetatable({},{__mode="k"})

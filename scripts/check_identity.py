@@ -15,6 +15,9 @@ def main(require_local_history=False):
     preservation = json.loads((ROOT / "docs/RENAME_PRESERVATION.json").read_text(encoding="utf-8"))
     artwork = json.loads((ROOT / "docs/ARTWORK.json").read_text(encoding="utf-8"))
     previous_art = artwork["preserved_previous_artwork"]
+    icon = artwork["mod_icon"]
+    assert icon["original_preservation_key"] == "Contents/mods/farmWorks/42/icon.png"
+    assert icon["previous_sha256"] == preservation["protected_sha256"][icon["original_preservation_key"]]
     assert previous_art["original_paths"] == ["preview.png", "Contents/mods/farmWorks/thumbnail.png"]
     assert all(preservation["protected_sha256"][name] == previous_art["sha256"]
                for name in previous_art["original_paths"])
@@ -26,6 +29,8 @@ def main(require_local_history=False):
             current = current.replace("Contents/mods/farmWorks/", "Contents/mods/B47ANCEDHarvest/")
         if original in previous_art["original_paths"]:
             current = previous_art["path"]
+        if original == icon["original_preservation_key"]:
+            current = icon["previous_path"]
         path = ROOT / current
         local_history = current.startswith("dist/") or current == ".steamcmd-last-upload.sha256"
         if not path.exists() and local_history and not require_local_history:
@@ -46,7 +51,18 @@ def main(require_local_history=False):
     assert len(data) == preview["bytes"] < preview["max_bytes_exclusive"] == 1_000_000
     assert data[:8] == b"\x89PNG\r\n\x1a\n"
     assert struct.unpack(">II", data[16:24]) == (preview["width"], preview["height"])
+    assert icon["path"] == "Contents/mods/B47ANCEDHarvest/42/icon.png"
+    assert icon["source"] == "assets/branding/harvest-icon-source.png"
+    for name, digest, width, height in (
+            (icon["source"], icon["source_sha256"], icon["source_width"], icon["source_height"]),
+            (icon["path"], icon["sha256"], 32, 32)):
+        data = (ROOT / name).read_bytes()
+        assert hashlib.sha256(data).hexdigest() == digest, name
+        assert data[:8] == b"\x89PNG\r\n\x1a\n", name
+        assert struct.unpack(">II", data[16:24]) == (width, height), name
+        assert data[24:26] == b"\x08\x06", "Icon must be 8-bit RGBA PNG"
     info = dict(line.split("=", 1) for line in (MOD / "42/mod.info").read_text().splitlines() if "=" in line)
+    assert info["icon"] == "icon.png" and info["poster"] == "thumbnail.png"
     assert info["name"] == "B47ANCE'd Harvest" and info["id"] == "B47ANCEDHarvest"
     assert info["modversion"] == (ROOT / "VERSION").read_text().strip()
     assert (ROOT / "WORKSHOP_ID.txt").read_text().strip() == "3788591121"
@@ -70,6 +86,7 @@ def main(require_local_history=False):
     print(f"PASS: identity, Workshop text parity, {len(paths)} Lua syntax/case checks, Lua-only source")
     print(f"PASS: {verified} protected files retain original SHA-256")
     print("PASS: original thumbnail and Workshop PNG export hashes/dimensions/size; previous artwork preserved")
+    print("PASS: selected RGBA mod icon source/export hashes; original icon preserved")
     if omitted:
         print(f"NOTE: {omitted} local historical outputs absent from this checkout; not validated")
 

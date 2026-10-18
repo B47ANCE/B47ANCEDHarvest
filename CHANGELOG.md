@@ -1,5 +1,13 @@
 # B47ANCE'd Harvest changelog
 
+## 0.9.3
+
+- Use the selected transparent trowel-and-seed-packet artwork as the 32 x 32
+  mod icon. Preserve the generated source, prompt and previous icon hashes.
+- Keep the mod thumbnail and Workshop preview byte-identical to 0.9.2.
+- Cosmetic PATCH only; gameplay, options, public APIs and save schemas remain
+  unchanged. MP test distribution; SP/dedicated NOT TESTED, stable G8 BLOCKED.
+
 ## 0.9.2
 
 - Keep the user-supplied 1254 x 1254 PNG unchanged as the mod thumbnail and

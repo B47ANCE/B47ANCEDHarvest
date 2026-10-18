@@ -4,18 +4,22 @@ Canonical inputs: root WORKSHOP_DESCRIPTION.txt and WORKSHOP_CHANGE_NOTE.txt,
 workshop.txt, VERSION, WORKSHOP_ID.txt, preview.png and authoritative Contents/
 mods/B47ANCEDHarvest. Keep their established BBCode and paragraph breaks.
 
-The prior 0.9.1 MP test upload succeeded. A subsequent explicit publish request
-authorizes packaging and distribution of the cosmetic 0.9.2 iteration to the
-same item. Preflight must verify the current source and upload preview. Prior
-upload evidence is not proof of this artwork being distributed. The supplied
-PNG exceeds Steam's preview size limit; the uploader must use a validated
-export below 1,000,000 bytes while preserving the full-resolution original.
-The user approved a smaller PNG using local image tools. Current preview:
-960 x 960, 954,246 bytes; hash/dimensions/source are in docs/ARTWORK.json.
-Regenerate with `python scripts/export_preview.py` using developer-only
-Pillow 12.3.0. The export helper never uploads or edits the original mod
-thumbnail. Packaging uses the committed export and refuses oversized or
-hash-mismatched previews. Steamworks reference:
+The 0.9.1 and 0.9.2 MP test uploads succeeded. The user authorizes 0.9.3
+publication after the icon update, checks and Harvest PR merges. Keep existing
+item 3788591121 and all current visibility/tag settings. Previous upload
+records do not prove this iteration's distribution.
+
+The original thumbnail and smaller 960 x 960 Workshop preview remain unchanged.
+The 954,246-byte preview fits Steam's limit and keeps its reviewed hash. The
+selected transparent trowel/seed-packet image is exported into the existing
+32 x 32 mod icon slot using Pillow 12.3.0/LANCZOS; the generated original and
+previous icon remain in assets/. Exact paths, dimensions and hashes live in
+docs/ARTWORK.json. Packaging ships only the runtime icon, not authoring assets.
+
+The developer-only preview helper `python scripts/export_preview.py` uses
+Pillow 12.3.0; this icon iteration does not run it or modify either thumbnail.
+Packaging uses the committed preview and refuses oversized/hash-mismatched
+images. Steamworks reference:
 https://partner.steamgames.com/doc/api/isteamugc?language=english
 
 Build from a clean, committed, freshly verified branch containing merged main.
