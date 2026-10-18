@@ -58,6 +58,10 @@ def main():
             entries[name] = committed(name)
     for name in ("preview.png", "workshop.txt"):
         entries[name] = committed(name)
+    preview = json.loads(committed("docs/ARTWORK.json"))["workshop_export"]
+    assert preview["path"] == "preview.png"
+    assert len(entries["preview.png"]) == preview["bytes"] < 1_000_000, "Workshop preview exceeds size limit"
+    assert sha(entries["preview.png"]) == preview["sha256"], "Workshop preview differs from reviewed export"
     assert entries and (prefix + "42/mod.info") in entries
     info = entries[prefix + "42/mod.info"].decode("utf-8")
     assert re.search(r"^id=" + MOD + "$", info, re.M)
@@ -114,6 +118,7 @@ def main():
               "validation": {"offline_hosts": "PASS: nine fixtures each on Lua 5.4 and 5.1",
                              "source_and_archive": "PASS", "SP": "NOT TESTED", "G7": "BLOCKED / NOT TESTED", "G8": "BLOCKED"},
               "visibility": "omitted from VDF; preserve existing", "upload_result": "NOT ATTEMPTED"}
+    record["preview_export"] = preview
     (output / "release-manifest.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8", newline="\n")
     subprocess.run([sys.executable, "scripts/check_versions.py", "--root", ".", "--release", "--json"], cwd=ROOT, check=True)
     print(json.dumps({"package": str(package), "sha256": record["package_sha256"], "source_commit": record["source_commit"], "workshop_id": ITEM}, indent=2))

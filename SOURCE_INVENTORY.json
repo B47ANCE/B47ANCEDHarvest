@@ -46,5 +46,6 @@
     "dist/current/upload.vdf",
     "dist/current/release-manifest.json"
   ],
-  "package_command": "python scripts/build_workshop.py --game-root <verified installed game root>"
+  "package_command": "python scripts/build_workshop.py --game-root <verified installed game root>",
+  "preview_export_command": "python scripts/export_preview.py (developer-only Pillow 12.3.0)"
 }

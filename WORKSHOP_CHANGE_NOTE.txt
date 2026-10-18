@@ -4,9 +4,9 @@
 
 [h2]Harvest artwork[/h2]
 
-• Replace the project thumbnail and Workshop preview with user-supplied Harvest artwork.
+• Replace the project thumbnail with user-supplied Harvest artwork and use a smaller PNG export for the Workshop preview.
 • Keep the small icon, Mod ID, Workshop item, gameplay and saved schemas unchanged.
-• Source artwork update only; this version has not been uploaded or tested in-game.
+• Workshop MP test distribution; SP and dedicated multiplayer NOT TESTED. Stable-release G8 remains BLOCKED.
 
 [b]Historical 0.9.1 changenote — original evidence retained[/b]
 

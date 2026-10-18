@@ -2,10 +2,12 @@
 
 ## 0.9.2
 
-- Apply the user-supplied 1254 x 1254 PNG unchanged to the project thumbnail
-  and Workshop preview. Preserve the previous artwork and validation evidence.
+- Keep the user-supplied 1254 x 1254 PNG unchanged as the mod thumbnail and
+  export an approved 960 x 960 PNG preview below Steam's size limit. Preserve
+  the previous artwork and validation evidence.
 - Cosmetic PATCH; gameplay, configuration, APIs, schemas and small icon are
-  unchanged. Source-only iteration; no package, deployment or upload.
+  unchanged. A subsequent publish request authorizes MP test distribution;
+  preview export/provenance must pass before upload. No deployment.
 
 ## 0.9.1
 

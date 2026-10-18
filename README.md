@@ -30,11 +30,12 @@ field, reveal a player-facing farming panel, or alter crops.
 - Ownership: crop/soil enhancements, agricultural implements, irrigation
   effects, farm transport content, and electric-fence gameplay.
 
-The owner-supplied Harvest PNG is copied unchanged to root `preview.png` for
-Workshop staging and `Contents/mods/B47ANCEDHarvest/thumbnail.png` for the mod
-poster. Build 42 metadata uses `poster=thumbnail.png`; the small `42/icon.png`
+The owner-supplied Harvest PNG is kept unchanged at
+`Contents/mods/B47ANCEDHarvest/thumbnail.png` for the mod poster. Root
+`preview.png` is the approved 960 x 960 Workshop export (954,246 bytes). Build 42 metadata uses `poster=thumbnail.png`; the small `42/icon.png`
 is unchanged. [Artwork provenance](docs/ARTWORK.json) records dimensions/hashes
-and the preserved previous image. This source artwork update is not uploaded.
+and the preserved previous image. Workshop distribution uses the validated
+preview export described there.
 
 ## Identity and compatibility
 
@@ -80,9 +81,9 @@ setting is needed: these are safety checks and existing vanilla configuration.
 ## Workshop test distribution
 
 Version 0.9.1 was uploaded as an MP testing build to existing item 3788591121.
-Version 0.9.2 changes source artwork only; packaging, deployment and a new
-Workshop upload require a separate request. Description and current change notes
-retain the MP-testing label. See [publishing](docs/PUBLISHING.md).
+A subsequent explicit publish request authorizes packaging and Workshop MP test
+distribution of the cosmetic 0.9.2 iteration. Description and current change
+notes retain the MP-testing label. See [publishing](docs/PUBLISHING.md).
 
 scripts/build_workshop.py creates deterministic committed-source ZIP/staging
 and a release manifest under ignored dist/current. It does not upload, overwrites

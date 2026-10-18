@@ -47,6 +47,7 @@ docs/history/VALIDATION-0.9.0.md preserves the earlier validation separately.
 owner-supplied PNG. Gameplay, API signatures, sandbox options, IDs, persisted
 schemas and small icon are unchanged. The API VERSION mirror changes only to
 report the canonical version. Work starts from merged main fc4be66 on
-art/harvest-0.9.2-thumbnail. This request does not authorize packaging/upload.
-The published 0.9.1 outputs remain in the original checkout; this worktree has
-no current package. Historical validation is retained as VALIDATION-0.9.1.md.
+art/harvest-0.9.2-thumbnail. A subsequent publish request authorizes packaging
+and MP test distribution; the version remains 0.9.2 with no gameplay changes.
+The published 0.9.1 outputs remain in the original checkout; current 0.9.2
+outputs are generated separately after source commit/validation. Historical validation is retained as VALIDATION-0.9.1.md.
