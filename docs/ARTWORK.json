@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "provenance": "Owner-supplied PNG retained unchanged in the mod thumbnail; a smaller Workshop PNG export was explicitly approved.",
+  "sha256": "12492c89a119c7a70ac8fc0aa51b6df771e987b29bbe5d550b521d3d2856d366",
+  "width": 1254,
+  "height": 1254,
+  "bytes": 1697917,
+  "applied_files": [
+    "Contents/mods/B47ANCEDHarvest/thumbnail.png"
+  ],
+  "preserved_previous_artwork": {
+    "path": "assets/history/thumbnail-before-0.9.2.png",
+    "sha256": "06aec07036c6ba87254a2704e39af784b85baf236a7311ba2a10c9496a2913e4",
+    "original_paths": [
+      "preview.png",
+      "Contents/mods/farmWorks/thumbnail.png"
+    ]
+  },
+  "workshop_export": {
+    "path": "preview.png",
+    "source": "Contents/mods/B47ANCEDHarvest/thumbnail.png",
+    "sha256": "3ad585660d6ca058d6e225da8a92d18889afa6705631b60811dc0f69263ab9d6",
+    "width": 960,
+    "height": 960,
+    "bytes": 954246,
+    "max_bytes_exclusive": 1000000,
+    "method": "Pillow thumbnail LANCZOS; optimized PNG compression level 9",
+    "pillow_version": "12.3.0"
+  }
+}

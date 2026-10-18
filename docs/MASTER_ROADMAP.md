@@ -1,6 +1,6 @@
 # B47ANCE'd Harvest Master Roadmap
 
-Canonical version: 0.9.1.
+Canonical version: 0.9.2.
 
 ## Implemented
 

@@ -4,7 +4,7 @@ Agriculture, crop inspection, field planning, and farming-system infrastructure 
 
 B47ANCE'd Harvest normalizes vanilla and compatible crops while exposing bounded field and irrigation-demand information for future agricultural gameplay.
 
-[b]Mod Version: 0.9.1[/b]
+[b]Mod Version: 0.9.2[/b]
 
 [b]MP testing build - dedicated multiplayer NOT TESTED[/b]
 

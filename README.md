@@ -4,7 +4,7 @@ B47ANCE'd Harvest is the farming and agricultural-infrastructure project. Its fi
 foundation extends vanilla Build 42 crops through read-only adapters rather
 than replacing them.
 
-- Status: version `0.9.1` bounded crop/irrigation APIs plus deterministic
+- Status: version `0.9.2` bounded crop/irrigation APIs plus deterministic
   seasonal guidance backed by live vanilla crop definitions and the optional
   weatherWorks calendar and a save/reload-aware native date probe; native date synchronization remains unverified and
   this is not yet a gameplay release.
@@ -30,14 +30,18 @@ field, reveal a player-facing farming panel, or alter crops.
 - Ownership: crop/soil enhancements, agricultural implements, irrigation
   effects, farm transport content, and electric-fence gameplay.
 
-Assets are staged under `Contents/mods/B47ANCEDHarvest/`: Steam `thumbnail.png` at the mod root,
-with the Build 42 `poster.png` and canonical `icon.png` under `42/`.
+The owner-supplied Harvest PNG is kept unchanged at
+`Contents/mods/B47ANCEDHarvest/thumbnail.png` for the mod poster. Root
+`preview.png` is the approved 960 x 960 Workshop export (954,246 bytes). Build 42 metadata uses `poster=thumbnail.png`; the small `42/icon.png`
+is unchanged. [Artwork provenance](docs/ARTWORK.json) records dimensions/hashes
+and the preserved previous image. Workshop distribution uses the validated
+preview export described there.
 
 ## Identity and compatibility
 
 - Display name: B47ANCE'd Harvest.
 - Mod ID and authoritative mod folder: `B47ANCEDHarvest`.
-- Existing Workshop item: `3788591121` (unchanged; rename not uploaded).
+- Existing Workshop item: `3788591121` (unchanged).
 - Previous Mod ID: `farmWorks`. Update enabled-mod lists to `B47ANCEDHarvest`;
   do not enable both identities. Re-enable the mod after changing the ID.
   Existing-save compatibility remains a runtime gate.
@@ -54,8 +58,9 @@ are historical outputs, not current source or publication proof.
 See [versioning](docs/VERSIONING.md), [validation](docs/VALIDATION.md), and
 [testing](docs/TESTING.md). Root `VERSION` is canonical. Public source repository:
 [B47ANCE/B47ANCEDHarvest](https://github.com/B47ANCE/B47ANCEDHarvest).
-The initial import was merged into `main` through PR #1. This hardening
-iteration is developed on `fix/harvest-0.9.1` for PR review. Historical output archives
+The initial import, 0.9.1 hardening and publication preparation merged through
+PRs #1–#3. The cosmetic 0.9.2 iteration uses `art/harvest-0.9.2-thumbnail` for
+PR review. Historical output archives
 and private developer settings remain local and are excluded from Git.
 G7 dedicated multiplayer NOT TESTED / BLOCKED; stable-release G8 BLOCKED.
 
@@ -75,11 +80,10 @@ setting is needed: these are safety checks and existing vanilla configuration.
 
 ## Workshop test distribution
 
-An explicit publish request authorizes this version's MP test distribution to
-existing item 3788591121. Description and current change notes carry the exact
-MP-testing label. Runtime Lua remains the reviewed hardening source; no stable
-release tag, automatic deployment, server launch or Steam desktop restart is
-part of packaging/upload. See [publishing](docs/PUBLISHING.md).
+Version 0.9.1 was uploaded as an MP testing build to existing item 3788591121.
+A subsequent explicit publish request authorizes packaging and Workshop MP test
+distribution of the cosmetic 0.9.2 iteration. Description and current change
+notes retain the MP-testing label. See [publishing](docs/PUBLISHING.md).
 
 scripts/build_workshop.py creates deterministic committed-source ZIP/staging
 and a release manifest under ignored dist/current. It does not upload, overwrites

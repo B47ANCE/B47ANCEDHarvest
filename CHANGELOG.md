@@ -1,5 +1,14 @@
 # B47ANCE'd Harvest changelog
 
+## 0.9.2
+
+- Keep the user-supplied 1254 x 1254 PNG unchanged as the mod thumbnail and
+  export an approved 960 x 960 PNG preview below Steam's size limit. Preserve
+  the previous artwork and validation evidence.
+- Cosmetic PATCH; gameplay, configuration, APIs, schemas and small icon are
+  unchanged. A subsequent publish request authorizes MP test distribution;
+  preview export/provenance must pass before upload. No deployment.
+
 ## 0.9.1
 
 - Prepare explicitly labelled Workshop MP test distribution with public source

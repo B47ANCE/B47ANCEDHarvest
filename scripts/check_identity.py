@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import re
+import struct
 from lupa.lua54 import LuaRuntime
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,12 +13,19 @@ MOD = ROOT / "Contents/mods/B47ANCEDHarvest"
 
 def main(require_local_history=False):
     preservation = json.loads((ROOT / "docs/RENAME_PRESERVATION.json").read_text(encoding="utf-8"))
+    artwork = json.loads((ROOT / "docs/ARTWORK.json").read_text(encoding="utf-8"))
+    previous_art = artwork["preserved_previous_artwork"]
+    assert previous_art["original_paths"] == ["preview.png", "Contents/mods/farmWorks/thumbnail.png"]
+    assert all(preservation["protected_sha256"][name] == previous_art["sha256"]
+               for name in previous_art["original_paths"])
     verified = 0
     omitted = 0
     for original, digest in preservation["protected_sha256"].items():
         current = original
         if current.startswith("Contents/"):
             current = current.replace("Contents/mods/farmWorks/", "Contents/mods/B47ANCEDHarvest/")
+        if original in previous_art["original_paths"]:
+            current = previous_art["path"]
         path = ROOT / current
         local_history = current.startswith("dist/") or current == ".steamcmd-last-upload.sha256"
         if not path.exists() and local_history and not require_local_history:
@@ -25,6 +33,19 @@ def main(require_local_history=False):
             continue
         assert hashlib.sha256(path.read_bytes()).hexdigest() == digest, current
         verified += 1
+    assert artwork["applied_files"] == ["Contents/mods/B47ANCEDHarvest/thumbnail.png"]
+    for name in artwork["applied_files"]:
+        data = (ROOT / name).read_bytes()
+        assert hashlib.sha256(data).hexdigest() == artwork["sha256"], name
+        assert len(data) == artwork["bytes"] and data[:8] == b"\x89PNG\r\n\x1a\n", name
+        assert struct.unpack(">II", data[16:24]) == (artwork["width"], artwork["height"]), name
+    preview = artwork["workshop_export"]
+    assert preview["path"] == "preview.png" and preview["source"] == artwork["applied_files"][0]
+    data = (ROOT / preview["path"]).read_bytes()
+    assert hashlib.sha256(data).hexdigest() == preview["sha256"]
+    assert len(data) == preview["bytes"] < preview["max_bytes_exclusive"] == 1_000_000
+    assert data[:8] == b"\x89PNG\r\n\x1a\n"
+    assert struct.unpack(">II", data[16:24]) == (preview["width"], preview["height"])
     info = dict(line.split("=", 1) for line in (MOD / "42/mod.info").read_text().splitlines() if "=" in line)
     assert info["name"] == "B47ANCE'd Harvest" and info["id"] == "B47ANCEDHarvest"
     assert info["modversion"] == (ROOT / "VERSION").read_text().strip()
@@ -48,6 +69,7 @@ def main(require_local_history=False):
     assert not any(p.suffix.lower() in (".java", ".jar", ".class") for p in MOD.rglob("*") if p.is_file())
     print(f"PASS: identity, Workshop text parity, {len(paths)} Lua syntax/case checks, Lua-only source")
     print(f"PASS: {verified} protected files retain original SHA-256")
+    print("PASS: original thumbnail and Workshop PNG export hashes/dimensions/size; previous artwork preserved")
     if omitted:
         print(f"NOTE: {omitted} local historical outputs absent from this checkout; not validated")
 

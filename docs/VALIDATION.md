@@ -1,113 +1,62 @@
-# B47ANCE'd Harvest hardening validation
+# Harvest artwork validation
 
-Project Version: 0.9.1
+Project Version: 0.9.2
 
-Scope: eight audited defects from 0.9.0, corrected on fix/harvest-0.9.1.
-Prior evidence is archived unchanged in history/VALIDATION-0.9.0.md.
-No game/server was launched. All PASS statements below are offline checks.
+Scope: cosmetic PATCH on art/harvest-0.9.2-thumbnail from merged main fc4be66.
+The owner supplied the image on 2026-10-17. Historical 0.9.1 validation is
+preserved byte for byte at history/VALIDATION-0.9.1.md; it is not current proof.
 
-## Baseline and regressions
+## Change and invariants
 
-- [VERIFIED] Start commit fbcde2b1c209cba172c295f0ca4c857686121515, merged main;
-  startup freshness PASS with a clean tree and zero divergence.
-- [TESTED: offline] Existing eight fixtures PASS on 0.9.0. The newly added
-  hardening fixture reproduced all eight regression-group failures before fixes.
-- [TESTED: offline, Windows/Lupa Lua 5.4] Nine fixtures PASS after fixes.
-- [TESTED: offline, Windows/Lupa Lua 5.1] The same nine fixtures PASS; this is
-  host language compatibility, not Kahlua or native-game execution.
+Keep the supplied PNG unchanged at Contents/mods/B47ANCEDHarvest/thumbnail.png
+(1254 x 1254, 1,697,917 bytes). The user approved local tools to export a smaller
+Workshop preview after the original exceeded Steam's limit. preview.png is
+960 x 960, 954,246 bytes, using Pillow 12.3.0/LANCZOS and optimized PNG. Both
+hashes, dimensions and the source relationship are recorded in ARTWORK.json. Keep the previous image under
+assets/history/thumbnail-before-0.9.2.png and validate it against the original
+RENAME_PRESERVATION.json hashes. That original evidence manifest is unchanged.
 
-The eight groups cover unknown/client mutation authority; provider partial,
-rejected, mismatched, malformed, changed-provider and unavailable readback;
-furrow classification; authoritative season disable/unknown configuration;
-optional malformed month arrays; invalid calendar days; incompatible native
-calendars while retaining custom-window support; and failed registrations not
-consuming quota/IDs. The quota ceiling and valid year-wrap behavior still pass.
+The small icon, Mod ID, Workshop item, public API signatures, sandbox settings,
+server authority and persisted schemas are unchanged. The only runtime Lua diff
+is the canonical VERSION mirror. Artwork introduces no gameplay configuration.
 
-## Source evidence and ownership
+## Validation commands
 
-Installed Steam build: 25485521. Exact full game version: UNKNOWN in this pass.
-- [VERIFIED] SPlantGlobalObject initializes new furrows as plow/none-seed, while
-  its isAlive predicate also accepts that state; the provider now excludes it.
-- [VERIFIED] Native ISFarmingMenu reads PlantGrowingSeasons through the same
-  sandbox-options accessor used by the new adapter. Source fingerprint:
-  c3c9413f414f49f0e9639361d2bfb79397d023d30cdd80d566d5293c364948c3.
-- [VERIFIED] Native ten-point watering/saveData source is unchanged; see
-  IRRIGATION_RUNTIME_AUDIT.md for fingerprint and exact source spans.
-- Client intent/networking is not added. Unknown realm rejects; server/SP calls
-  use verified native crop mutation. Source withdrawal remains waterWorks-owned.
-- Receipts are transient and additive, not a persistence/schema migration or
-  atomic source-water transaction. No safe automatic retry/rollback is claimed.
-- Configuration assessment: use the existing native PlantGrowingSeasons option.
-  Safety checks, Gregorian/provider IDs and technical page/registry limits do not
-  introduce meaningful new gameplay settings and remain internal contracts.
+Run with Python 3 and developer-only Lupa 2.8:
 
-## Additional checks
+- python scripts/export_preview.py (Pillow 12.3.0; preview and metadata only)
+- python scripts/check_versions.py --root . --json
+- python scripts/check_identity.py
+- python scripts/run_tests.py
+- python scripts/run_tests.py --lua51
+- git diff --check
+- shared tools/Test-PZRepositoryFreshness.ps1 -Repository <worktree>
 
-- [TESTED: offline] Canonical 0.9.1 and all eleven declared current mirrors
-  PASS; historical records retain their original version labels.
-- [TESTED: offline] All fourteen runtime Lua sources compile, require paths
-  match source case, and no source case collisions or Java/JAR/class files exist.
-  Static case validation is not Linux runtime proof.
-- [TESTED: original workspace] Identity/Workshop-description parity PASS and all
-  145 protected historical/artwork/upload/checksum files retain their SHA-256.
-- [TESTED: isolated Git export] Version/identity checks and all nine fixtures
-  PASS on both Lua 5.4 and 5.1 hosts. Five portable protected files match hashes;
-  the 140 omitted local output files are explicitly not validated in the export.
-- [TESTED: staged public-file audit] All 55 UTF-8 files and three PNG assets
-  scanned for credential patterns and excluded filenames; no findings.
-  git diff --cached --check PASS. No dedicated scanner/CI result is claimed.
-- [TESTED: release gate] --release correctly fails only for the absent current
-  package. This does not invalidate the passing source-version mirrors.
-- [VERIFIED] Archived history/VALIDATION-0.9.0.md matches the previous main
-  validation content; no prior runtime evidence is relabeled as current.
+[TESTED: offline, Windows] Version mirrors, source identity, Lua syntax/require
+case and supplied-image hashes/dimensions pass. PNG chunk CRCs and image-data
+decompression pass. The old image and validation document match merged main.
+The five portable protected entries pass using the old-art archive; 140 local
+historical output entries are absent from this clean worktree and not validated.
 
-## Exact validation commands
+[TESTED: offline] All nine fixtures pass on explicit Lua 5.4 and Lua 5.1 hosts.
+These are language-host tests, not PZ/Kahlua, SP or dedicated execution.
 
-Use Python 3 with Lupa. This workspace's interpreter:
-C:/Users/willi/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe
+## Distribution and runtime limits
 
-Arguments run from the project root:
-- scripts/check_versions.py --root . --json
-- scripts/run_tests.py
-- scripts/run_tests.py --lua51
-- scripts/check_identity.py
-- scripts/check_identity.py --require-local-history
-- scripts/check_versions.py --root . --release --json
+The prior 0.9.1 Workshop upload succeeded; its staging/upload evidence remains
+intact in the original checkout. The subsequent publish request authorizes
+0.9.2 MP test packaging/upload to the same existing item. The packager must
+run --release against the actual archive, verify preview hash/size, and bind
+commit/package/member hashes in ignored dist/current/release-manifest.json.
+Record the upload result separately; upload success is not inferred from these
+offline checks. No deployment, game/server launch or Steam restart is authorized.
+A specific client restart decision is required after verified upload success.
 
-Git checks:
-- git diff --cached --check
-- git status --short --ignored
-- shared tools/Test-PZRepositoryFreshness.ps1 -Repository <project root>
-- git rev-parse HEAD
-- git ls-remote --heads origin fix/harvest-0.9.1
+[RUNTIME GATE] Mod-selector rendering, Workshop display and all SP/dedicated
+runtime scenarios remain NOT TESTED. No game/server was launched. G7 remains
+BLOCKED / NOT TESTED and stable-release G8 remains BLOCKED.
 
-## Runtime and release gates
-
-[RUNTIME GATE] Native startup, SP save/reload, server-authoritative option
-agreement, hosted/dedicated joining/rejoining, crop replication and restarts
-remain untested. See TESTING.md and IRRIGATION_API.md for scenarios.
-G7: dedicated multiplayer NOT TESTED / BLOCKED. Stable-release G8: BLOCKED.
-No current package, deployment, Workshop upload, merge or stable tag authorized
-by this iteration's commit/push request. Historical assets/packages are preserved.
-
-## Authorized Workshop MP test preparation
-
-A subsequent publish request on 2026-10-17 authorizes distribution testing of
-this same 0.9.1 runtime, not stable-release approval. Preparation uses
-release/harvest-0.9.1-mp-test from the verified hardening merge. Runtime Lua and
-saved schemas are unchanged. Root Workshop text is canonical; current-only
-change notes exclude the historical sections from the actual update.
-scripts/build_workshop.py is an offline-only packager. The installed historical
-Farmworks VDF is retained; it identifies item 3788591121 but its content path
-no longer exists. Fresh staging uses only committed current source.
-Full semantic game version remains UNKNOWN; exact Steam build is recorded.
-The unauthenticated live item lookup is unavailable, so live-page comparison is
-unverified; upload VDF omits visibility/tags to preserve existing settings.
-Upload success must be recorded separately from offline checks and G7/G8.
-
-Publication preflight re-ran all nine fixtures on explicit Lua 5.4 and Lua 5.1
-hosts using isolated Python 3.12/Lupa 2.8, plus identity/case/preservation checks:
-PASS, all 145 historical/artwork hashes unchanged. The current bundled runtime
-had no Lupa, so a dedicated developer test environment was created outside the
-repository; no test dependency enters runtime content. Official Steamworks
-description bound was checked as 8000 bytes, with actual paragraphs preserved.
+[TESTED: offline] The preview was inspected visually and fully decoded; its
+content/composition is preserved at reduced dimensions. Repeated export is
+byte-identical. The full-resolution mod thumbnail still matches the supplied
+file. Production Lua matches the approved hardening except its VERSION mirror.

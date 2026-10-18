@@ -4,10 +4,23 @@ Canonical inputs: root WORKSHOP_DESCRIPTION.txt and WORKSHOP_CHANGE_NOTE.txt,
 workshop.txt, VERSION, WORKSHOP_ID.txt, preview.png and authoritative Contents/
 mods/B47ANCEDHarvest. Keep their established BBCode and paragraph breaks.
 
-Runtime version remains 0.9.1; this is distribution preparation of the approved
-hardening, not a new gameplay iteration. Build from a clean, committed, freshly
-verified branch containing merged main. The user authorized the existing item's
-upload; no new item, visibility change, stable tag, deployment or server action.
+The prior 0.9.1 MP test upload succeeded. A subsequent explicit publish request
+authorizes packaging and distribution of the cosmetic 0.9.2 iteration to the
+same item. Preflight must verify the current source and upload preview. Prior
+upload evidence is not proof of this artwork being distributed. The supplied
+PNG exceeds Steam's preview size limit; the uploader must use a validated
+export below 1,000,000 bytes while preserving the full-resolution original.
+The user approved a smaller PNG using local image tools. Current preview:
+960 x 960, 954,246 bytes; hash/dimensions/source are in docs/ARTWORK.json.
+Regenerate with `python scripts/export_preview.py` using developer-only
+Pillow 12.3.0. The export helper never uploads or edits the original mod
+thumbnail. Packaging uses the committed export and refuses oversized or
+hash-mismatched previews. Steamworks reference:
+https://partner.steamgames.com/doc/api/isteamugc?language=english
+
+Build from a clean, committed, freshly verified branch containing merged main.
+Do not create a new item, change visibility, create a stable tag, deploy or
+launch a server as part of packaging.
 
 Run with Python 3 and developer-only Lupa from scripts/requirements-tests.txt.
 The test runner explicitly selects Lua 5.4 (or --lua51) rather than depending

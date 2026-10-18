@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "harvest",
   "name": "B47ANCE'd Harvest",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "reviewed": true,
-  "source_digest": "05f70cc666dea170b67dff2a88ff243f9b2feca9d6ce5fc7825a2e1a6d547e42",
+  "source_digest": "dc787862f0d3bd9b884ffca838e776fe52d2ac758176a7186d9e112729b8ed55",
   "features": [
     {
       "status": "Source",
